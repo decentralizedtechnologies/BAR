@@ -1,0 +1,10 @@
+@import "../../../theme/base";
+
+.upload {
+  position: relative;
+  background: $color-primary;
+  min-height: 100vh;
+
+  &__dropzone {
+  }
+}

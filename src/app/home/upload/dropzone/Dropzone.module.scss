@@ -1,0 +1,28 @@
+@import "../../../../theme/base";
+
+.dz {
+  &__wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: $space-md;
+  }
+
+  border: 3px dotted darken($color-primary, 14%);
+  background-color: transparent;
+  min-height: 90vh;
+  width: 95vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+}

@@ -1,0 +1,25 @@
+@import "../../theme/base";
+
+.navbar {
+  z-index: $z-index-navigation;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  &__logo {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__right {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
