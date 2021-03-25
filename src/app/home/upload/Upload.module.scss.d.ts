@@ -1,6 +1,6 @@
 export type Styles = {
-  'upload': string;
-  'upload__heading': string;
+  upload: string;
+  upload__heading: string;
 };
 
 export type ClassNames = keyof Styles;

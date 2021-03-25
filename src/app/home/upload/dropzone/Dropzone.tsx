@@ -14,7 +14,7 @@ DropzoneJS.autoDiscover = false;
 
 export const Dropzone: React.FC<DropzoneProps> = ({ onFilesAdded }) => {
   const dropzoneRef = useRef<DropzoneJS>(null);
-  const ipfsUpload = useIPFSUpload();
+  const ipfs = useIPFSUpload();
 
   useEffect(() => {
     if (dropzoneRef.current) {
@@ -29,7 +29,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onFilesAdded }) => {
     });
 
     dropzoneRef.current.on("addedfiles", (files: DropzoneJS.DropzoneFile[]) => {
-      ipfsUpload.queue(onFilesAdded(files));
+      ipfs.queue(onFilesAdded(files));
     });
   }, []);
 

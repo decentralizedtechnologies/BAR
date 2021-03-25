@@ -50,7 +50,7 @@ export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }
           [styles["dropzone-preview__ipfs-path--hide"]]: !ipfsResult.path,
         })}
       >
-        {ipfsResult.path && ipfsResult.path}
+        {ipfsResult.path && "open"}
       </a>
       <p className={styles["dropzone-preview-file__file-size"]}>350 of 5000 KB</p>
     </div>
