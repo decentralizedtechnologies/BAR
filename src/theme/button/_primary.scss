@@ -1,0 +1,94 @@
+.button_primary {
+  padding: 13px 24px;
+  background-color: $color-brand;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-4;
+  line-height: 1.47;
+  color: $color-white;
+  border-radius: 28px;
+  border: none;
+  min-width: 88px;
+  transition:
+    background-color $duration-medium,
+    color $duration-medium;
+  background-position: center;
+
+  &:hover,
+  &:focus {
+    background: $color-brand-bright
+      radial-gradient(circle, transparent 1%, $color-brand-bright 1%)
+      center/15000%;
+    color: $color-white;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:active {
+    background-color: $color-brand;
+    background-size: 100%;
+    transition: background 0s;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: $color-light-1;
+
+    * {
+      pointer-events: none;
+    }
+  }
+  // Left for legacy
+  &__icon {
+    vertical-align: middle;
+    margin: {
+      left: $space-s;
+    }
+  }
+
+  &__icon_right {
+    vertical-align: middle;
+    margin: {
+      left: $space-s;
+    }
+  }
+
+  &__icon_left {
+    vertical-align: middle;
+    margin: {
+      right: $space-s;
+    }
+  }
+
+  // # Modifiers
+  // Size
+  &_medium,
+  &_large {
+    font-size: $font-size-5;
+    border-radius: $border-radius-pill;
+  }
+  &_medium {
+    padding: 17px $space-l;
+    line-height: 22px;
+  }
+  &_large {
+    padding: 20px $space-l;
+    line-height: 1.5;
+  }
+  // Color
+  &_invert {
+    background-color: $color-white;
+    color: $color-brand;
+    &:hover {
+      color: $color-brand;
+      background: $color-brand-light
+        radial-gradient(circle, transparent 1%, $color-brand-light 1%)
+        center/15000%;
+    }
+    &:active {
+      background-color: $color-brand-brighter;
+      background-size: 100%;
+    }
+  }
+}

@@ -5,6 +5,34 @@
   background: $color-primary;
   min-height: 100vh;
 
-  &__dropzone {
+  &__heading {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+
+    h1 {
+      background: $color-primary;
+      display: inline-block;
+      span {
+        display: block;
+        &:nth-child(1) {
+          @include font-properties($text-heading-level-2);
+          font-weight: $font-weight-medium;
+          // font-size: rem($font-size-base * 2) !important;
+        }
+        &:nth-child(2) {
+          @include font-properties($text-heading-level-1);
+          font-size: rem($font-size-base * 6) !important;
+        }
+      }
+    }
+
+    h2 {
+      @include font-properties($text-lead-3);
+      font-weight: $font-weight-medium;
+      padding-top: $space-default;
+    }
   }
 }

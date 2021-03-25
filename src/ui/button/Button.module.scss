@@ -1,0 +1,506 @@
+@import "../../theme/base";
+@import "../../theme/button/primary";
+@import "../../theme/button/button-outline";
+
+$LOADER_SIZE: 30px;
+$HALF_LOADER_SIZE: 15px;
+
+.button {
+  @extend .button_primary;
+  display: inline-block;
+  min-width: auto;
+  white-space: nowrap;
+  text-align: center;
+  cursor: pointer;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &__content {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+
+    &--loading {
+      opacity: 0;
+    }
+
+    &--disabled {
+      pointer-events: none;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    margin-bottom: -#{$space-xs};
+    vertical-align: middle;
+
+    svg {
+      width: $space-default;
+      height: $space-default;
+    }
+
+    &--on-left {
+      margin-right: $space-s;
+      margin-left: 0;
+    }
+  }
+
+  &__icon--left {
+    @extend .button__icon;
+    margin-right: $space-s;
+  }
+
+  &__icon--right {
+    @extend .button__icon;
+    margin-left: $space-s;
+  }
+
+  &--large {
+    @extend .button_primary_large;
+  }
+
+  &--medium {
+    padding: $space-default $space-l;
+
+    .button__content {
+      margin: 0;
+      padding: 0;
+      font-size: $font-size-5;
+      line-height: 1.5;
+    }
+  }
+
+  &--extra-small {
+    padding: $space-s 20px;
+    font-size: $font-size-3;
+    font-weight: $font-weight-medium;
+    line-height: 1.75;
+  }
+
+  // "m" on desktop and "xs" on mobile
+
+  &--auto-size {
+    padding: $space-s 20px;
+    font-size: $font-size-3;
+    font-weight: $font-weight-medium;
+    line-height: 1.75;
+
+    &.button--outlined {
+      padding: 6px 20px;
+    }
+
+    // default values from .button size "m"
+    @include atTablet {
+      padding: 13px $space-ml;
+      font-size: $font-size-4;
+      font-weight: $font-weight-bold;
+      line-height: 1.47;
+
+      &.button--outlined {
+        padding: 11px 22px;
+      }
+    }
+  }
+
+  &--secondary {
+    font-weight: $font-weight-medium;
+    color: $color-dark-1;
+    background: $color-light-3;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-dark-1;
+      background: $color-light-2;
+    }
+  }
+
+  &--success {
+    font-weight: $font-weight-medium;
+    color: $color-white;
+    background: $color-status-ok;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: rgba($color-status-ok, 0.9);
+    }
+  }
+
+  &--danger {
+    font-weight: $font-weight-medium;
+    color: $color-white;
+    background: $color-status-critical;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: rgba($color-status-critical, 0.9);
+    }
+  }
+
+  &--dark {
+    font-weight: $font-weight-medium;
+    color: $color-white;
+    background: $color-dark-1;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: rgba($color-dark-1, 0.9);
+    }
+  }
+
+  &--light {
+    font-weight: $font-weight-medium;
+    color: $color-white;
+    background: $color-dark-5;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: rgba($color-dark-5, 0.9);
+    }
+  }
+
+  // Inverted and text variant
+
+  &.button--inverted,
+  &.button--text {
+    background-color: $color-white;
+
+    &.button--primary {
+      color: $color-brand;
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $color-brand-bright;
+        background: $color-brand-light;
+      }
+
+      &[disabled] {
+        color: $color-dark-3;
+        background-color: $color-white;
+      }
+    }
+
+    &.button--secondary {
+      background-color: $color-white;
+
+      &:active,
+      &:hover,
+      &:focus {
+        background: $color-light-3;
+      }
+
+      &[disabled] {
+        color: $color-dark-3;
+        background-color: $color-white;
+      }
+    }
+
+    &.button--success {
+      color: $color-status-ok;
+      background-color: $color-white;
+
+      &:active,
+      &:hover,
+      &:focus {
+        background: $color-status-ok-lighter;
+      }
+
+      &[disabled] {
+        color: $color-dark-3;
+        background-color: $color-white;
+      }
+    }
+
+    &.button--danger {
+      color: $color-status-critical;
+      background-color: $color-white;
+
+      &:active,
+      &:hover,
+      &:focus {
+        background: $color-status-critical-lighter;
+      }
+
+      &[disabled] {
+        color: $color-dark-3;
+        background-color: $color-white;
+      }
+    }
+
+    &.button--dark {
+      color: $color-dark-1;
+      background-color: $color-white;
+
+      &:active,
+      &:hover,
+      &:focus {
+        background: $color-light-3;
+      }
+
+      &[disabled] {
+        color: $color-dark-3;
+        background-color: $color-white;
+      }
+    }
+
+    &.button--light {
+      color: $color-dark-4;
+      background-color: $color-white;
+
+      &:active,
+      &:hover,
+      &:focus {
+        background: $color-light-3;
+      }
+
+      &[disabled] {
+        color: $color-light-2;
+        background-color: $color-white;
+      }
+    }
+  }
+
+  &.button--text {
+    padding: 0;
+    font-weight: 400;
+    transition: opacity $duration-medium;
+
+    &.button--primary,
+    &.button--secondary,
+    &.button--success,
+    &.button--danger,
+    &.button--dark,
+    &.button--light {
+      &:active,
+      &:hover,
+      &[disabled],
+      &:focus {
+        background: transparent;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  // Outlined variant
+
+  &--outlined {
+    background-color: $color-white;
+    @extend .button-outline;
+
+    &.button--extra-small {
+      padding: 6px 18px;
+    }
+
+    &.button--medium {
+      padding: 14px 30px;
+    }
+
+    &.button--large {
+      @extend .button-outline_large;
+    }
+
+    &.button--primary,
+    &.button--secondary,
+    &.button--success,
+    &.button--danger,
+    &.button--dark {
+      &[disabled] {
+        border-color: $color-light-1;
+        color: $color-light-1;
+        background-color: $color-white;
+      }
+    }
+
+    &.button--secondary {
+      border-color: $color-light-3;
+      color: $color-dark-1;
+
+      &:active,
+      &:hover,
+      &:focus {
+        border-color: $color-light-3;
+        color: $color-dark-1;
+        background: $color-light-3;
+      }
+    }
+
+    &.button--success {
+      border-color: $color-status-ok;
+      color: $color-status-ok;
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $color-white;
+      }
+    }
+
+    &.button--danger {
+      border-color: $color-status-critical;
+      color: $color-status-critical;
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $color-white;
+      }
+    }
+
+    &.button--dark {
+      border-color: $color-dark-1;
+      color: $color-dark-1;
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $color-white;
+      }
+    }
+
+    &.button--light {
+      border-color: $color-dark-5;
+      color: $color-dark-5;
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $color-white;
+      }
+
+      &[disabled] {
+        border-color: $color-light-3;
+        color: $color-light-2;
+        background-color: $color-white;
+      }
+    }
+  }
+
+  // Loader classes
+
+  &__loading-floating-border {
+    position: absolute;
+    top: calc(50% - #{$HALF_LOADER_SIZE});
+    left: calc(50% - #{$HALF_LOADER_SIZE});
+    width: $LOADER_SIZE;
+    height: $LOADER_SIZE;
+    border: $space-xxs solid transparent;
+    border-top: $space-xxs solid $color-white;
+    border-radius: $border-radius-circle;
+    animation: spin 2s linear infinite;
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &__loader {
+    position: absolute;
+    top: calc(50% - #{$HALF_LOADER_SIZE});
+    left: calc(50% - #{$HALF_LOADER_SIZE});
+    width: $LOADER_SIZE;
+    height: $LOADER_SIZE;
+    border: $space-xxs solid $color-white;
+    border-radius: $border-radius-circle;
+    opacity: 0.2;
+  }
+
+  &.button--loading {
+    position: relative;
+    cursor: not-allowed;
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 1;
+    }
+
+    &[disabled].button--primary.button--loading {
+      background-color: $color-brand;
+    }
+
+    &[disabled].button--primary.button--outlined.button--loading,
+    &[disabled].button--primary.button--inverted.button--loading,
+    &[disabled].button--success.button--inverted.button--loading,
+    &[disabled].button--primary.button--text.button--loading,
+    &[disabled].button--success.button--text.button--loading,
+    &[disabled].button--success.button--outlined.button--loading,
+    &[disabled].button--danger.button--inverted.button--loading,
+    &[disabled].button--danger.button--text.button--loading,
+    &[disabled].button--danger.button--outlined.button--loading,
+    &[disabled].button--dark.button--outlined.button--loading,
+    &[disabled].button--dark.button--inverted.button--loading,
+    &[disabled].button--dark.button--text.button--loading,
+    &[disabled].button--light.button--outlined.button--loading,
+    &[disabled].button--light.button--inverted.button--loading,
+    &[disabled].button--light.button--text.button--loading,
+    &[disabled].button--secondary.button--outlined.button--loading,
+    &[disabled].button--secondary.button--loading {
+      background-color: $color-white;
+
+      .button__loader {
+        border-color: $color-dark-1;
+      }
+    }
+
+    &[disabled].button--primary.button--outlined.button--loading {
+      border-color: $color-brand;
+    }
+
+    &[disabled].button--secondary.button--loading {
+      background-color: $color-light-3;
+    }
+
+    &[disabled].button--secondary.button--outlined.button--loading {
+      border-color: $color-light-3;
+    }
+
+    &[disabled].button--success.button--loading {
+      background-color: $color-status-ok;
+    }
+
+    &[disabled].button--success.button--outlined.button--loading {
+      border-color: $color-status-ok;
+    }
+
+    &[disabled].button--danger.button--loading {
+      background-color: $color-status-critical;
+    }
+
+    &[disabled].button--danger.button--outlined.button--loading {
+      border-color: $color-status-critical;
+    }
+
+    &[disabled].button--dark.button--loading {
+      background-color: $color-dark-1;
+    }
+
+    &[disabled].button--dark.button--outlined.button--loading {
+      border-color: $color-dark-1;
+    }
+
+    &[disabled].button--light.button--loading {
+      background-color: $color-light-1;
+    }
+
+    &[disabled].button--light.button--outlined.button--loading {
+      border-color: $color-dark-5;
+    }
+
+    .button__icon {
+      visibility: hidden;
+    }
+  }
+}

@@ -1,0 +1,597 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+$mq-x-small: 0px !default;
+$mq-small: 360px !default;
+$mq-medium: 480px !default;
+$mq-large: 768px !default;
+$mq-large-plus: 1000px !default;
+$mq-x-large: 1280px !default;
+
+$breakpoints: () !default;
+$breakpoints: map-merge(
+  (
+    xs: $mq-x-small,
+    sm: $mq-small,
+    md: $mq-medium,
+    lg: $mq-large,
+    lgP: $mq-large-plus,
+    xl: $mq-x-large,
+  ),
+  $breakpoints
+);
+
+$grid-gutters: () !default;
+$grid-gutters: map-merge(
+  (
+    xs: (
+      inside: 8px,
+      outside: 16px,
+    ),
+    sm: (
+      inside: 8px,
+      outside: 16px,
+    ),
+    md: (
+      inside: 16px,
+      outside: 32px,
+    ),
+    lg: (
+      inside: 16px,
+      outside: 64px,
+    ),
+    lgP: (
+      inside: 16px,
+      outside: 64px,
+    ),
+    xl: (
+      inside: 16px,
+      outside: 64px,
+    ),
+  ),
+  $grid-gutters
+);
+
+// Grid Columns
+$grid-columns: (1, 2, 3, 4, 5, 6, 7, 8, 12) !default;
+$container-mw: 1440px !default;
+$container-mw-xl: 1600px !default;
+
+// Brand
+$color-brand: #f8d663 !default;
+$color-brand-bright: #0089c7 !default;
+$color-brand-brighter: #00a6eb !default;
+$color-brand-light: #eaf9ff !default;
+$color-brand-20: rgba($color-brand, 0.2) !default;
+$color-brand-bright-45: lighten($color-brand-brighter, 45%) !default;
+
+//Accent
+// NOTE: we can delete this to avoid confusion. Looks like we havent used them and never will
+$color-accent-1: #f4f6f8 !default;
+$color-accent-2: #f0f9ff !default;
+
+//Gray dark
+$color-white: #ffffff !default;
+$color-white-50: rgba($color-white, 0.5) !default;
+$color-black: #000000 !default;
+$color-dark-1: #1a1a1a !default;
+$color-dark-2: #484c51 !default;
+$color-dark-3: #6f757c !default;
+$color-dark-4: #8e949a !default;
+$color-dark-5: #b1b5b9 !default;
+$color-dark-70: rgba($color-dark-1, 0.7) !default;
+$color-dark-50: rgba($color-dark-1, 0.5) !default;
+$color-dark-40: rgba($color-dark-1, 0.4) !default;
+$color-dark-20: rgba($color-dark-1, 0.2) !default;
+$color-dark-10: rgba($color-dark-1, 0.1) !default;
+$color-dark-05: rgba($color-dark-1, 0.05) !default;
+
+//Gray light
+$color-light-1: #c8cacb !default;
+$color-light-2: #dee0e2 !default;
+$color-light-3: #f4f6f8 !default;
+
+// Status colors
+$color-status-normal: #009ccc !default;
+$color-status-normal-light: #d6f5ff !default;
+$color-status-normal-lighter: #f0fbff !default;
+$color-status-ok: #00cc99 !default;
+$color-status-ok-light: #d6fff5 !default;
+$color-status-ok-lighter: #e6fff9 !default;
+$color-status-warning: #fad105 !default;
+$color-status-warning-light: #fffdb8 !default;
+$color-status-warning-lighter: #fffeeb !default;
+$color-status-critical: #bd2d00 !default;
+$color-status-critical-light: #ffe2e0 !default;
+$color-status-critical-lighter: #fff5f5 !default;
+$color-status-unknown: #f4f6f8 !default;
+
+// Data Visualization colors
+$color-value-increase: #00d3a1 !default;
+$color-value-increase-bright: #00bb8e !default;
+$color-value-decrease: #ff7c35 !default;
+$color-value-decrease-bright: #e76823 !default;
+
+$status-colors: () !default;
+$status-colors: map-merge(
+  (
+    normal: $color-status-normal,
+    success: $color-status-ok,
+    warning: $color-status-warning,
+    error: $color-status-critical,
+  ),
+  $status-colors
+);
+
+$status-colors-light: () !default;
+$status-colors-light: map-merge(
+  (
+    normal: $color-status-normal-light,
+    success: $color-status-ok-light,
+    warning: $color-status-warning-light,
+    error: $color-status-critical-light,
+  ),
+  $status-colors-light
+);
+
+// Background colors
+$color-background-1: $color-brand-light !default;
+$color-background-2: $color-light-2 !default;
+$color-background-3: $color-light-3 !default;
+$color-background-4: $color-dark-1 !default;
+$color-background: $color-brand-light !default;
+$color-background-dark: $color-light-1 !default;
+$color-background-light: #f7f9fa !default;
+$color-background-inverse: $color-dark-1 !default;
+
+// Border radius sizes
+$border-radius: 3px !default;
+$border-radius-medium: 5px !default;
+$border-radius-large: 8px !default;
+$border-radius-circle: 50% !default;
+$border-radius-pill: 32px !default;
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif: "GT America", "Helvetica Neue", "Helvetica", Arial, sans-serif !default;
+$font-family-monospace: "GT America Mono" !default;
+$font-family-base: $font-family-sans-serif !default;
+$font-size-base: 16 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 700 !default;
+$color-base: $color-dark-2 !default;
+
+//Default font sizes
+$font-size-1: rem(11) !default; //0.6875
+$font-size-2: rem(13) !default; //0.8125
+$font-size-3: rem(14) !default; //0.875
+$font-size-4: rem(15) !default; //0.9375
+$font-size-5: rem(16) !default; //1
+
+$line-height-baseline: 1.6 !default;
+
+//Text sizes
+$text-1: (
+  font: (
+    size: rem(20),
+    lineHeight: 1.6,
+  ),
+) !default;
+$text-2: (
+  font: (
+    size: rem(18),
+    lineHeight: 1.556,
+  ),
+) !default;
+$text-3: (
+  font: (
+    size: $font-size-5,
+    lineHeight: 1.625,
+  ),
+) !default;
+$text-4: (
+  font: (
+    size: $font-size-1,
+    lineHeight: 1.42,
+  ),
+) !default;
+
+$text-monospace-1: (
+  font: (
+    size: $font-size-2,
+    lineHeight: 1.538,
+    fontFamily: $font-family-monospace,
+  ),
+) !default;
+
+$text-lead-0: (
+  font: (
+    size: rem(24),
+    lineHeight: 1.42,
+    color: $color-dark-1,
+  ),
+  sizes: (
+    lgP: (
+      font: (
+        size: rem(26),
+        lineHeight: 1.38,
+      ),
+    ),
+  ),
+) !default;
+
+$text-lead-1: (
+  font: (
+    size: rem(22),
+    lineHeight: 1.5,
+    color: $color-dark-1,
+  ),
+  sizes: (
+    lgP: (
+      font: (
+        size: rem(24),
+        lineHeight: 1.41,
+      ),
+    ),
+  ),
+) !default;
+
+$text-lead-2: (
+  font: (
+    size: rem(20),
+    lineHeight: 1.5,
+    color: $color-dark-1,
+  ),
+) !default;
+
+$text-lead-3: (
+  font: (
+    size: rem(18),
+    lineHeight: 1.555556,
+    color: $color-dark-1,
+  ),
+) !default;
+
+//Heading sizes
+$text-heading-level-1: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(36),
+    lineHeight: 1.222,
+    // stretch: expanded
+  ),
+  sizes: (
+    lgP: (
+      font: (
+        size: rem(48),
+        lineHeight: 1.167,
+      ),
+    ),
+  ),
+) !default;
+
+$text-heading-level-2: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(28),
+    lineHeight: 1.286,
+  ),
+  sizes: (
+    lgP: (
+      font: (
+        size: rem(34),
+        lineHeight: 1.24,
+      ),
+    ),
+  ),
+) !default;
+
+$text-heading-level-3: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(22),
+    lineHeight: 1.36,
+  ),
+  sizes: (
+    lgP: (
+      font: (
+        size: rem(26),
+        lineHeight: 1.308,
+      ),
+    ),
+  ),
+) !default;
+
+$text-heading-level-4: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(20),
+    lineHeight: 1.4,
+  ),
+) !default;
+
+$text-heading-level-5: (
+  font: (
+    weight: $font-weight-medium,
+    size: $font-size-5,
+    lineHeight: 1.5,
+  ),
+) !default;
+
+$text-heading-level-6: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(16),
+    lineHeight: 1.5,
+  ),
+) !default;
+
+$text-heading-level-7: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(18),
+    lineHeight: 1.444,
+  ),
+) !default;
+
+$text-heading-eyebrow: (
+  font: (
+    size: rem(16),
+    lineHeight: 1.25,
+    fontFamily: $font-family-monospace,
+  ),
+) !default;
+
+$text-form-label: (
+  font: (
+    color: $color-dark-1,
+    weight: $font-weight-medium,
+    size: $font-size-5,
+    lineHeight: 1.25,
+  ),
+) !default;
+
+// Heading Display
+$text-display-0: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(48),
+    lineHeight: 0.95,
+    stretch: expanded,
+  ),
+  sizes: (
+    md: (
+      font: (
+        size: rem(56),
+        lineHeight: 1.1,
+      ),
+    ),
+    lgP: (
+      font: (
+        size: rem(64),
+        lineHeight: 1.125,
+      ),
+    ),
+  ),
+) !default;
+$text-display-1: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(40),
+    lineHeight: 1.2,
+    stretch: expanded,
+  ),
+  sizes: (
+    lgP: (
+      font: (
+        size: rem(56),
+        lineHeight: 1.143,
+      ),
+    ),
+  ),
+) !default;
+
+$text-display-2: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(30),
+    lineHeight: 1.26,
+    stretch: expanded,
+  ),
+  sizes: (
+    lgP: (
+      font: (
+        size: rem(40),
+        lineHeight: 1.2,
+      ),
+    ),
+  ),
+) !default;
+
+$text-display-3: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(24),
+    lineHeight: 1.333,
+    stretch: expanded,
+  ),
+  sizes: (
+    lgP: (
+      font: (
+        size: rem(28),
+        lineHeight: 1.28,
+      ),
+    ),
+  ),
+) !default;
+
+$text-display-4: (
+  font: (
+    weight: $font-weight-bold,
+    size: rem(22),
+    lineHeight: 1.363,
+    stretch: expanded,
+  ),
+) !default;
+
+// Links
+$link-1: (
+  font: (
+    size: rem(20),
+    lineHeight: 1.6,
+  ),
+) !default;
+
+$link-2: (
+  font: (
+    size: rem(17),
+    lineHeight: 1.58,
+  ),
+) !default;
+
+$link-3: (
+  font: (
+    size: $font-size-5,
+    lineHeight: 1.625,
+  ),
+) !default;
+
+// Spacing
+$space-default: 16px !default;
+$space-xxs: $space-default / 8 !default;
+$space-xs: $space-default / 4 !default;
+$space-s: $space-default / 2 !default;
+$space-m: $space-default !default; // 16px
+$space-ml: $space-default * 1.5 !default; // 24px
+$space-m-1: $space-ml !default; // 24px
+$space-l: $space-default * 2 !default; // 32px
+$space-xl: $space-default * 4 !default; // 64
+$space-xxl: $space-default * 5 !default; // 80px
+$space-xxxl: $space-default * 6 !default; // 96px
+
+$space-inset-default: $space-m $space-m $space-m $space-m !default;
+$space-inset-xs: $space-xs $space-xs $space-xs $space-xs !default;
+$space-inset-s: $space-s $space-s $space-s $space-s !default;
+$space-inset-m: $space-m $space-m $space-m $space-m !default;
+$space-inset-ml: $space-ml $space-ml $space-ml $space-ml !default;
+$space-inset-l: $space-l $space-l $space-l $space-l !default;
+$space-inset-xl: $space-xl $space-xl $space-xl $space-xl !default;
+
+$space-stack-default: 0 0 $space-m 0 !default;
+$space-stack-xxs: 0 0 $space-xxs 0 !default;
+$space-stack-xs: 0 0 $space-xs 0 !default;
+$space-stack-s: 0 0 $space-s 0 !default;
+$space-stack-m: 0 0 $space-m 0 !default;
+$space-stack-ml: 0 0 $space-ml 0 !default;
+$space-stack-l: 0 0 $space-l 0 !default;
+$space-stack-xl: 0 0 $space-xl 0 !default;
+
+// Shadows
+$shadow-radius: $border-radius-medium !default;
+$shadow-dropdown: 0 5px 10px 0 $color-dark-05 !default;
+$shadow-overlay: 0 5px 15px 0 $color-dark-10 !default;
+$shadow-fluffy: 0 17px 22px 0 $color-dark-10 !default;
+$shadow-input: 0 1px 1px $color-dark-05 !default;
+$shadow-select: 0 2px 2px $color-dark-05 !default;
+
+$shadow-sm: 0 1px 1px 0 rgba($color-dark-1, 0.05) !default;
+$shadow-md: 0 2px 2px 0 rgba($color-dark-1, 0.05) !default;
+
+// Borders
+$border: 1px solid $color-dark-5 !default;
+$border-disabled: 1px solid $color-light-1 !default;
+$border-brand: 1px solid $color-brand !default;
+$border-error: 1px solid $color-status-critical !default;
+$border-dark: 1px solid $color-dark-1 !default;
+$border-divider: 1px solid $color-light-2 !default;
+$border-divider-inverse: 1px solid #3b3e42 !default;
+
+// legacy
+$border-light: 1px solid $color-light-2 !default;
+
+// Box Shadows
+$box-shadow-default-width: 2px !default;
+$box-shadow-border: 0 1px 1px rgba(9, 10, 11, 0.05) !default;
+$box-shadow-border-large: 0 0 0 $box-shadow-default-width $color-brand-bright !default;
+$box-shadow-focus: 0 0 0 3px rgba($color-light-2, 0.3) !default;
+$box-shadow-focus-large: 0 0 0 6px $color-brand-light !default;
+$box-shadow-error: 0 0 0 3px $color-status-critical-lighter !default;
+$box-shadow-ok: 0 0 0 3px $color-status-ok-lighter !default;
+$box-shadow-warning: 0 0 0 3px $color-status-warning-lighter !default;
+
+// Animations
+$animation-rotate: rotate;
+$animation-moveDownIn: moveDownIn;
+$animation-moveDownOut: moveDownOut;
+$animation-moveLeftIn: moveLeftIn;
+$animation-moveLeftOut: moveLeftOut;
+$animation-moveRightIn: moveRightIn;
+$animation-moveRightOut: moveRightOut;
+$animation-moveUpIn: moveUpIn;
+$animation-moveUpOut: moveUpOut;
+$animation-slideDownIn: slideDownIn;
+$animation-slideDownOut: slideDownOut;
+$animation-slideLeftIn: slideLeftIn;
+$animation-slideLeftOut: slideLeftOut;
+$animation-slideRightIn: slideRightIn;
+$animation-slideRightOut: slideRightOut;
+$animation-slideUpIn: slideUpIn;
+$animation-slideUpOut: slideUpOut;
+$animation-fadeIn: fadeIn;
+$animation-fadeOut: fadeOut;
+$animation-zoomIn: zoomIn;
+$animation-zoomOut: zoomOut;
+$animation-zoomBigIn: zoomBigIn;
+$animation-zoomBigOut: zoomBigOut;
+$animation-zoomUpIn: zoomUpIn;
+$animation-zoomUpOut: zoomUpOut;
+$animation-zoomLeftIn: zoomLeftIn;
+$animation-zoomLeftOut: zoomLeftOut;
+$animation-zoomRightIn: zoomRightIn;
+$animation-zoomRightOut: zoomRightOut;
+$animation-zoomDownIn: zoomDownIn;
+$animation-zoomDownOut: zoomDownOut;
+
+// Animation Easing
+$ease-linear: linear;
+$ease-out: cubic-bezier(0.215, 0.61, 0.355, 1) !default;
+$ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19) !default;
+$ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1) !default;
+$ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46) !default;
+$ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46) !default;
+$ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6) !default;
+$ease-out-circle: cubic-bezier(0.08, 0.82, 0.17, 1) !default;
+$ease-in-circle: cubic-bezier(0.6, 0.04, 0.98, 0.34) !default;
+$ease-in-out-circle: cubic-bezier(0.78, 0.14, 0.15, 0.86) !default;
+$ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1) !default;
+$ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06) !default;
+$ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1) !default;
+$ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0) !default;
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1) !default;
+
+// Animation Duration
+$duration-default: 300ms !default;
+$duration-slower: 1000ms !default;
+$duration-slow: 500ms !default;
+$duration-medium: 400ms !default;
+$duration-fast: 200ms !default;
+$duration-faster: 100ms !default;
+$duration-paused: 3200ms !default;
+
+// Navigation
+$mobile-menu-width: 360px !default;
+
+// Forms
+// Radio Buttons
+$form-radio: rem(20) !default;
+
+// Checkbox
+$checkbox-size: $form-radio !default;
+
+// Switch
+$switch-height: 32px !default;
+$switch-min-width: 60px !default;

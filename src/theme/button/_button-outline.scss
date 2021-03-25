@@ -1,0 +1,92 @@
+.button-outline {
+  padding: 11px 22px;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-4;
+  line-height: 1.47;
+  color: $color-brand;
+  border-radius: $border-radius-pill;
+  border: 2px solid $color-brand;
+  min-width: 88px;
+  transition:
+    background $duration-slow,
+    border-color $duration-medium,
+    color $duration-medium;
+  background-position: center;
+
+  &:hover,
+  &:focus {
+    color: $color-white;
+    border-color: $color-brand;
+    background: $color-brand;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: $color-brand-bright;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: $color-light-1;
+
+    &:hover {
+      background-color: $color-light-1;
+    }
+  }
+
+  &__icon {
+    vertical-align: middle;
+    margin: {
+      left: $space-s;
+    }
+  }
+
+  &_medium,
+  &_large {
+    font-size: $font-size-5;
+    border-radius: $border-radius-pill;
+  }
+  &_medium {
+    padding: 15px $space-l;
+    line-height: 22px;
+  }
+  &_large {
+    padding: 18px $space-l;
+    line-height: 1.5;
+  }
+
+  &_inverse {
+    color: $color-black;
+    border-color: $color-black;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-black;
+      border-color: $color-black;
+    }
+  }
+
+  &_inverse-thin {
+    color: $color-dark-1;
+    border-color: $color-light-2;
+    border-width: 1px;
+    box-shadow: $shadow-input;
+
+    &.button-outline_medium {
+      padding: 16px $space-l;
+    }
+
+    &.button-outline_large {
+      padding: 19px $space-l;
+    }
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-dark-1;
+      border-color: $color-dark-1;
+    }
+  }
+}

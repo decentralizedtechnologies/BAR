@@ -2,6 +2,7 @@ import clsx from "clsx";
 import DropzoneJS from "dropzone";
 import { useEffect, useRef } from "react";
 import { useIPFSUpload } from "../../../../hooks/useIPFSUpload/useIPFSUpload";
+import { UploadIcon } from "../../../../ui/icons/UploadIcon";
 import styles from "./Dropzone.module.scss";
 import { DropzoneFileExtended } from "./DropzonePreview";
 
@@ -35,7 +36,10 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onFilesAdded }) => {
   return (
     <div className={styles.dz__wrapper}>
       <section id="dropzone" className={clsx(`dropzone`, styles.dz)}>
-        <div className="dz-message">Drop a File</div>
+        <div className={clsx("dz-message", styles.dz__message)}>
+          Drop Files Here
+          <UploadIcon className={styles["dz__message--upload-icon"]} />
+        </div>
       </section>
     </div>
   );

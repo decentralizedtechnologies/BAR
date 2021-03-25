@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { Col, Container, Row } from "react-grid-system";
 import { useObservable } from "../../../hooks/useObservable/useObservable";
 import { NavBar } from "../../../ui/navbar/NavBar";
 import { DropzoneProps } from "./dropzone/Dropzone";
@@ -18,18 +19,17 @@ export const Upload = () => {
   const observable = useObservable();
 
   const extendFiles = (files: Array<DropzoneFileExtended>) => {
-    const extendedFiles = files.map((file) => {
+    for (const file of files) {
       file.progressObservable = observable.create(file.upload.uuid, 0);
       file.setProgress = observable.set;
 
       file.ipfsResultObservable = observable.create(`${file.upload.uuid}-ipfs-result`, {});
       file.setIpfsResult = observable.set;
-      return file;
-    });
+    }
 
-    setFiles(extendedFiles);
+    setFiles([...files]);
 
-    return extendedFiles;
+    return files;
   };
 
   return (
@@ -39,6 +39,26 @@ export const Upload = () => {
       </NavBar>
 
       <Dropzone onFilesAdded={extendFiles} />
+
+      <div className={styles.upload__heading}>
+        <Container>
+          <Row justify="between">
+            <Col>
+              <h1>
+                <span>Blockchain — Agnostic</span>
+                <span>Asset Registry</span>
+              </h1>
+            </Col>
+            <Col lg={4}>
+              <h2>
+                Upload any file type to a <strong>decentralized storage network</strong> and do
+                things with it.
+              </h2>
+              <p>eg. create an NFT in Ethereum</p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 };

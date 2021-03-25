@@ -1,0 +1,109 @@
+@import "../../../../theme/base";
+
+.dropzone-preview {
+  position: absolute;
+  width: 420px;
+  height: 40vh;
+  top: 56px;
+  right: 0;
+  background-color: $color-dark-1;
+  border-radius: $border-radius;
+  padding: $space-m;
+  white-space: initial;
+  overflow: hidden;
+  display: none;
+
+  &__dismiss-overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background: rgba($color-black, 0.5);
+  }
+
+  &__visible {
+    display: block;
+  }
+
+  &__wrapper {
+    justify-content: flex-end;
+    position: relative;
+    display: flex;
+  }
+
+  &__info-text-box {
+    padding: $space-s;
+    color: $color-white;
+    background-color: $color-black;
+    border-radius: $border-radius;
+    margin-bottom: $space-default;
+
+    p {
+      @include font-properties($text-4);
+    }
+  }
+
+  &__files {
+    padding-bottom: $space-xxl;
+    max-height: 210px;
+    overflow: scroll;
+  }
+}
+
+.dropzone-preview-file {
+  background-color: $color-black;
+  border-radius: $border-radius;
+  margin-bottom: $space-s;
+  padding: $space-s;
+  text-align: right;
+  border: 1px solid $color-black;
+
+  &:hover {
+    border: 1px solid $color-brand;
+    cursor: pointer;
+  }
+
+  &__file-name {
+    @include font-properties($text-3);
+    color: $color-white;
+    margin: 0;
+  }
+
+  &__progress-rail {
+    height: 3px;
+    border-radius: $border-radius-pill;
+    background-color: $color-white;
+    width: 100%;
+    margin-bottom: $space-s;
+    margin-top: $space-s;
+
+    &--hide {
+      display: none;
+    }
+  }
+
+  &__progress-track {
+    height: 3px;
+    border-radius: $border-radius-pill;
+    background-color: $color-brand;
+  }
+
+  &__file-size {
+    @include font-properties($text-4);
+    color: $color-white;
+    margin: 0;
+  }
+
+  &__ipfs-path {
+    @include font-properties($text-4);
+    color: $color-brand;
+
+    &--hide {
+      display: none;
+    }
+  }
+}
