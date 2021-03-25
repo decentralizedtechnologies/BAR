@@ -7,6 +7,21 @@ import path from "path";
 import uint8ArrayConcat from "uint8arrays/concat";
 import uint8ArrayToString from "uint8arrays/to-string";
 
+const config = {
+  // The pinningService config tells minty what remote pinning service to use for pinning the IPFS data for a token.
+  // The default config uses Pinata (https://pinata.cloud), and expects a JWT access token in the PINATA_API_TOKEN
+  // environment variable.
+  //
+  pinningService: {
+    name: "pinata",
+    endpoint: "https://api.pinata.cloud/psa",
+    key: "$$PINATA_API_TOKEN",
+  },
+
+  // If you're running the local IPFS gateway on a non-default port, or if you want to use a public gatway when displaying IPFS gateway urls, edit this.
+  ipfsGatewayUrl: "http://localhost:8080/ipfs",
+};
+
 type ContentOptions = {
   path?: string;
   name?: string;
