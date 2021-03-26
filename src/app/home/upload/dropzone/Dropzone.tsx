@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import DropzoneJS from "dropzone";
 import { useEffect, useRef } from "react";
-import { useIPFSUpload } from "../../../../hooks/useIPFSUpload/useIPFSUpload";
+import { useIPFS } from "../../../../hooks/useIPFS/useIPFS";
 import { UploadIcon } from "../../../../ui/icons/UploadIcon";
 import styles from "./Dropzone.module.scss";
 import { DropzoneFileExtended } from "./DropzonePreview";
@@ -14,7 +14,7 @@ DropzoneJS.autoDiscover = false;
 
 export const Dropzone: React.FC<DropzoneProps> = ({ onFilesAdded }) => {
   const dropzoneRef = useRef<DropzoneJS>(null);
-  const ipfs = useIPFSUpload();
+  const ipfs = useIPFS();
 
   useEffect(() => {
     if (dropzoneRef.current) {

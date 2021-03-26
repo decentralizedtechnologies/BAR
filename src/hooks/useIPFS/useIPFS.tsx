@@ -1,15 +1,13 @@
-import ipfsClient from "ipfs-http-client";
 import { useCallback } from "react";
 import { DropzoneFileExtended } from "../../app/home/upload/dropzone/DropzonePreview";
+import { useLocalStorage } from "../useLocalStorage/useLocalStorage";
 import { Minty } from "../useMinty/minty";
 
-const ipfs = ipfsClient({ host: "ipfs.infura.io", port: 5001, protocol: "https" });
-
-export const useIPFSUpload = () => {
+export const useIPFS = () => {
   let queuedFiles: DropzoneFileExtended[] = [];
   const minty = new Minty();
-
   minty.init();
+  const ls = useLocalStorage();
 
   const queue = useCallback((files: DropzoneFileExtended[]) => {
     if (queuedFiles.length === 0) {
@@ -41,6 +39,10 @@ export const useIPFSUpload = () => {
         file.setProgress(file.upload.uuid, 100);
         file.setIpfsResult(`${file.upload.uuid}-ipfs-result`, result);
       }
+
+      const files = ls.get("files", "[]");
+      files.push(result);
+      ls.set("files", files);
 
       queue(queuedFiles);
     } catch (error) {
