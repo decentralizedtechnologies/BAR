@@ -4,7 +4,7 @@ import { UnixFSEntry } from "ipfs-core-types/src/files";
 import { useEffect, useState } from "react";
 import { Observable } from "rxjs";
 import { useSubscription } from "../../../../hooks/useSubscription/useSubscription";
-import { IconButton } from "../../../../ui/iconButton/IconButton";
+import { Button } from "../../../../ui/button/Button";
 import { FilesIcon } from "../../../../ui/icons/FilesIcon";
 import styles from "./DropzonePreview.module.scss";
 
@@ -75,9 +75,14 @@ export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
         />
       )}
       <div className={styles["dropzone-preview__wrapper"]}>
-        <IconButton color="dark" onClick={handleDisplayDropzonePreview}>
-          <FilesIcon />
-        </IconButton>
+        <Button
+          size="s"
+          color="dark"
+          rightIcon={<FilesIcon />}
+          onClick={handleDisplayDropzonePreview}
+        >
+          Files
+        </Button>
         <div
           id="dropzone-preview"
           className={clsx(styles["dropzone-preview"], {
