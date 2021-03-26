@@ -26,7 +26,7 @@
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "@openzeppelin/contracts": "^3.4.1",
+    "@openzeppelin/contracts": "^4.0.0",
     "@types/dropzone": "^5.7.3",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
