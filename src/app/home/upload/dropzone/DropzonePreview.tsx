@@ -3,6 +3,8 @@ import { DropzoneFile } from "dropzone";
 import { UnixFSEntry } from "ipfs-core-types/src/files";
 import { useEffect, useState } from "react";
 import { Observable } from "rxjs";
+import { IPFSResponse } from "../../../../hooks/useIPFS/IPFSResponse";
+import { useLocalStorage } from "../../../../hooks/useLocalStorage/useLocalStorage";
 import { useSubscription } from "../../../../hooks/useSubscription/useSubscription";
 import { Button } from "../../../../ui/button/Button";
 import { FilesIcon } from "../../../../ui/icons/FilesIcon";
@@ -11,12 +13,20 @@ import styles from "./DropzonePreview.module.scss";
 export type DropzoneFileExtended = {
   progressObservable: Observable<number>;
   ipfsResultObservable: Observable<UnixFSEntry>;
-  setIpfsResult: (key: string, value: UnixFSEntry) => void;
+  setIpfsResult: (key: string, value: IPFSResponse) => void;
   setProgress: (key: string, value: number) => void;
 } & DropzoneFile;
 
+export type IPFSFile = {
+  name: string;
+} & IPFSResponse;
+
 export type DropzonePreviewFileProps = {
   file: DropzoneFileExtended;
+};
+
+export type DropzonePreviewLocalFileProps = {
+  file: IPFSFile;
 };
 
 export type DropzonePreviewProps = {
@@ -57,8 +67,28 @@ export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }
   );
 };
 
+export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> = ({ file }) => {
+  return (
+    <div className={styles["dropzone-preview-file"]}>
+      <p className={styles["dropzone-preview-file__file-name"]}>{file.name}</p>
+      <a
+        href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+        target="_blank"
+        rel="nofollow"
+        className={clsx(styles["dropzone-preview-file__ipfs-path"], {
+          [styles["dropzone-preview__ipfs-path--hide"]]: !file.path,
+        })}
+      >
+        {file.path && "open"}
+      </a>
+      <p className={styles["dropzone-preview-file__file-size"]}>{file.size}</p>
+    </div>
+  );
+};
+
 export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
   const [displayDropzonePreview, setDisplayDropzonePreview] = useState(false);
+  const ls = useLocalStorage();
 
   const handleDisplayDropzonePreview = () => setDisplayDropzonePreview(!displayDropzonePreview);
 
@@ -100,6 +130,9 @@ export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
           <div className={styles["dropzone-preview__files"]}>
             {files.map((file) => (
               <DropzonePreviewFile key={file.upload.uuid} file={file} />
+            ))}
+            {ls.get<IPFSFile[]>("files", "[]").map((file) => (
+              <DropzonePreviewLocalFile key={file.path} file={file} />
             ))}
           </div>
         </div>

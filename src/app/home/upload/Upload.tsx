@@ -4,11 +4,18 @@ import { Col, Container, Row } from "react-grid-system";
 import { useObservable } from "../../../hooks/useObservable/useObservable";
 import { NavBar } from "../../../ui/navbar/NavBar";
 import { DropzoneProps } from "./dropzone/Dropzone";
-import { DropzoneFileExtended, DropzonePreview } from "./dropzone/DropzonePreview";
+import { DropzoneFileExtended, DropzonePreviewProps } from "./dropzone/DropzonePreview";
 import styles from "./Upload.module.scss";
 
 const Dropzone = dynamic<DropzoneProps>(
   () => import("./dropzone/Dropzone").then((mod) => mod.Dropzone),
+  {
+    ssr: false,
+  }
+);
+
+const DropzonePreview = dynamic<DropzonePreviewProps>(
+  () => import("./dropzone/DropzonePreview").then((mod) => mod.DropzonePreview),
   {
     ssr: false,
   }

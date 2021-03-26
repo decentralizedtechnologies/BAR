@@ -5,11 +5,11 @@ export const useLocalStorage = () => {
     localStorage.setItem(key, JSON.stringify(value));
   };
 
-  const get = (key: string, type: string = "{}", chain: string = "", fallback?: any) => {
+  function get<T>(key: string, type: string = "{}", chain: string = "", fallback?: any): T {
     const value = JSON.parse(localStorage.getItem(key) || type);
 
     if (Array.isArray(value)) {
-      return value;
+      return (value as unknown) as T;
     }
 
     if (typeof value === "object") {
@@ -17,7 +17,7 @@ export const useLocalStorage = () => {
     }
 
     return value;
-  };
+  }
 
   return {
     set,

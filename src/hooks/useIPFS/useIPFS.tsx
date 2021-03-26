@@ -1,12 +1,11 @@
 import { useCallback } from "react";
-import { DropzoneFileExtended } from "../../app/home/upload/dropzone/DropzonePreview";
+import { DropzoneFileExtended, IPFSFile } from "../../app/home/upload/dropzone/DropzonePreview";
 import { useLocalStorage } from "../useLocalStorage/useLocalStorage";
-import { Minty } from "../useMinty/minty";
+import { useMinty } from "../useMinty/useMinty";
 
 export const useIPFS = () => {
   let queuedFiles: DropzoneFileExtended[] = [];
-  const minty = new Minty();
-  minty.init();
+  const minty = useMinty();
   const ls = useLocalStorage();
 
   const queue = useCallback((files: DropzoneFileExtended[]) => {
@@ -25,7 +24,7 @@ export const useIPFS = () => {
 
   const upload = useCallback(async (file: DropzoneFileExtended) => {
     try {
-      const result = await minty.addFileToIPFS(
+      const result = await minty.addFileToIPFS<IPFSFile>(
         file,
         { path: file.name },
         {
@@ -40,7 +39,9 @@ export const useIPFS = () => {
         file.setIpfsResult(`${file.upload.uuid}-ipfs-result`, result);
       }
 
-      const files = ls.get("files", "[]");
+      result.name = file.name;
+
+      const files = ls.get<IPFSFile[]>("files", "[]");
       files.push(result);
       ls.set("files", files);
 

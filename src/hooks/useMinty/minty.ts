@@ -67,7 +67,7 @@ export class Minty {
     this._initialized = false;
   }
 
-  async init() {
+  init() {
     if (this._initialized) {
       return;
     }
@@ -76,9 +76,11 @@ export class Minty {
     this.ipfs = ipfsClient({ host: "ipfs.infura.io", port: 5001, protocol: "https" });
 
     this._initialized = true;
+
+    return this;
   }
 
-  async addFileToIPFS(content, options: ContentOptions, ipfsOptions?: AddOptions) {
+  async addFileToIPFS<T>(content, options: ContentOptions, ipfsOptions?: AddOptions): Promise<T> {
     const basename = this._getFileBasename(options);
 
     // When you add an object to IPFS with a directory prefix in its path,
@@ -96,7 +98,7 @@ export class Minty {
     return {
       ...result,
       path: `${result.cid.toString()}/${basename}`,
-      ipfsURI: `${ensureIpfsUriPrefix(result.cid)}/${basename}`,
+      uri: `${ensureIpfsUriPrefix(result.cid)}/${basename}`,
     };
   }
 
@@ -126,13 +128,45 @@ export class Minty {
    *
    * @returns {Promise<CreateNFTResult>}
    */
-  async createNFTFromAssetData(content, options: ContentOptions) {
+  async createNFTFromAsset(content, options: ContentOptions) {
     const basename = this._getFileBasename(options);
 
     const { cid: assetCid } = await this.addFileToIPFS(content, options);
 
     // make the NFT metadata JSON
     const assetURI = ensureIpfsUriPrefix(assetCid) + "/" + basename;
+    const metadata = await this.makeNFTMetadata(assetURI, options);
+
+    // add the metadata to IPFS
+    const { cid: metadataCid } = await this.ipfs.add(
+      { path: "/nft/metadata.json", content: JSON.stringify(metadata) },
+      ipfsAddOptions
+    );
+
+    const metadataURI = ensureIpfsUriPrefix(metadataCid) + "/metadata.json";
+
+    // get the address of the token owner from options, or use the default signing address if no owner is given
+    let ownerAddress = options.owner;
+    if (!ownerAddress) {
+      ownerAddress = await this.defaultOwnerAddress();
+    }
+
+    // mint a new token referencing the metadata URI
+    const tokenId = await this.mintToken(ownerAddress, metadataURI);
+
+    // format and return the results
+    return {
+      tokenId,
+      ownerAddress,
+      metadata,
+      assetURI,
+      metadataURI,
+      assetGatewayURL: makeGatewayURL(assetURI),
+      metadataGatewayURL: makeGatewayURL(metadataURI),
+    };
+  }
+
+  async createNFTFromAssetData(assetURI, options: ContentOptions) {
     const metadata = await this.makeNFTMetadata(assetURI, options);
 
     // add the metadata to IPFS
