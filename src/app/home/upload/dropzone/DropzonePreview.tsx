@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { DropzoneFile } from "dropzone";
+import filesize from "filesize";
 import { UnixFSEntry } from "ipfs-core-types/src/files";
 import { useEffect, useState } from "react";
 import { Observable } from "rxjs";
@@ -34,7 +35,7 @@ export type DropzonePreviewProps = {
 };
 
 export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }) => {
-  const progress = useSubscription(0, file.progressObservable);
+  const progress: number = useSubscription(0, file.progressObservable);
   const ipfsResult = useSubscription({}, file.ipfsResultObservable);
 
   const { name } = file;
@@ -62,7 +63,9 @@ export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }
       >
         {ipfsResult.path && "open"}
       </a>
-      <p className={styles["dropzone-preview-file__file-size"]}>350 of 5000 KB</p>
+      <p className={styles["dropzone-preview-file__file-size"]}>
+        {`${progress.toFixed(0)}%`} of {filesize(file.upload.total)}
+      </p>
     </div>
   );
 };
@@ -81,14 +84,15 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
       >
         {file.path && "open"}
       </a>
-      <p className={styles["dropzone-preview-file__file-size"]}>{file.size}</p>
+      <p className={styles["dropzone-preview-file__file-size"]}>{filesize(file.size)} — local</p>
     </div>
   );
 };
 
 export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
-  const [displayDropzonePreview, setDisplayDropzonePreview] = useState(false);
   const ls = useLocalStorage();
+  const [displayDropzonePreview, setDisplayDropzonePreview] = useState(false);
+  const localFiles = ls.get<IPFSFile[]>("files", "[]");
 
   const handleDisplayDropzonePreview = () => setDisplayDropzonePreview(!displayDropzonePreview);
 
@@ -131,7 +135,7 @@ export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
             {files.map((file) => (
               <DropzonePreviewFile key={file.upload.uuid} file={file} />
             ))}
-            {ls.get<IPFSFile[]>("files", "[]").map((file) => (
+            {localFiles.map((file) => (
               <DropzonePreviewLocalFile key={file.path} file={file} />
             ))}
           </div>
