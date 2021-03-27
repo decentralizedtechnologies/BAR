@@ -114,8 +114,9 @@ export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
           color="dark"
           rightIcon={<FilesIcon />}
           onClick={handleDisplayDropzonePreview}
+          variant="outlined"
         >
-          Files
+          Your files
         </Button>
         <div
           id="dropzone-preview"

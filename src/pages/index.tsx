@@ -8,6 +8,11 @@ export const Home = () => (
       <link rel="icon" href="/favicon.ico" />
       <link rel="stylesheet" href="/dropzone/basic.min.css" />
       <link rel="stylesheet" href="/dropzone/dropzone.min.css" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
       <meta
         name="description"
         content="Upload any file type to IPFS, Arweave and others and do things with it."

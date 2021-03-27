@@ -28,7 +28,7 @@ $LOGO_WIDTH: 98px;
   }
 
   &__right {
-    height: $NAVBAR_HEIGHT * 1.3;
+    height: $NAVBAR_HEIGHT;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
