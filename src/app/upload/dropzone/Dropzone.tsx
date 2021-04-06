@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import DropzoneJS from "dropzone";
 import { useEffect, useRef } from "react";
-import { useIPFS } from "../../../../hooks/useIPFS/useIPFS";
-import { UploadIcon } from "../../../../ui/icons/UploadIcon";
+import { useIPFS } from "../../../hooks/useIPFS/useIPFS";
+import { UploadIcon } from "../../../ui/icons/UploadIcon";
 import styles from "./Dropzone.module.scss";
 import { DropzoneFileExtended } from "./DropzonePreview";
 

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Upload } from "../app/home/upload/Upload";
+import { Upload } from "../app/upload/Upload";
 
 export const Home = () => (
   <>

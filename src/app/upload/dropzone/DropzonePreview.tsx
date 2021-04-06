@@ -4,13 +4,13 @@ import filesize from "filesize";
 import { UnixFSEntry } from "ipfs-core-types/src/files";
 import { useEffect, useState } from "react";
 import { Observable } from "rxjs";
-import { IPFSResponse } from "../../../../hooks/useIPFS/IPFSResponse";
-import { useLocalStorage } from "../../../../hooks/useLocalStorage/useLocalStorage";
-import { useSubscription } from "../../../../hooks/useSubscription/useSubscription";
-import { IconButton } from "../../../../ui/iconButton/IconButton";
-import { ChevronRightCircleIcon } from "../../../../ui/icons/ChevronRightCircleIcon";
-import { FilesIcon } from "../../../../ui/icons/FilesIcon";
-import { VerticalEllipsisIcon } from "../../../../ui/icons/VerticalEllipsisIcon";
+import { IPFSResponse } from "../../../hooks/useIPFS/IPFSResponse";
+import { useLocalStorage } from "../../../hooks/useLocalStorage/useLocalStorage";
+import { useSubscription } from "../../../hooks/useSubscription/useSubscription";
+import { IconButton } from "../../../ui/iconButton/IconButton";
+import { ChevronRightCircleIcon } from "../../../ui/icons/ChevronRightCircleIcon";
+import { FilesIcon } from "../../../ui/icons/FilesIcon";
+import { VerticalEllipsisIcon } from "../../../ui/icons/VerticalEllipsisIcon";
 import styles from "./DropzonePreview.module.scss";
 
 export type DropzoneFileExtended = {

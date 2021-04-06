@@ -1,10 +1,10 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Col, Container, Row } from "react-grid-system";
-import { useObservable } from "../../../hooks/useObservable/useObservable";
-import { Button } from "../../../ui/button/Button";
-import { Modal } from "../../../ui/modal/Modal";
-import { NavBar } from "../../../ui/navbar/NavBar";
+import { useObservable } from "../../hooks/useObservable/useObservable";
+import { Button } from "../../ui/button/Button";
+import { Modal } from "../../ui/modal/Modal";
+import { NavBar } from "../../ui/navbar/NavBar";
 import { DropzoneProps } from "./dropzone/Dropzone";
 import { DropzoneFileExtended, DropzonePreviewProps } from "./dropzone/DropzonePreview";
 import styles from "./Upload.module.scss";
@@ -25,6 +25,7 @@ const DropzonePreview = dynamic<DropzonePreviewProps>(
 
 export const Upload = () => {
   const [files, setFiles] = useState<DropzoneFileExtended[]>([]);
+  const [fileActionType, setFileActionType] = useState();
   const observable = useObservable();
 
   const extendFiles = (files: Array<DropzoneFileExtended>) => {

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { DropzoneFileExtended, IPFSFile } from "../../app/home/upload/dropzone/DropzonePreview";
+import { DropzoneFileExtended, IPFSFile } from "../../app/upload/dropzone/DropzonePreview";
 import { useLocalStorage } from "../useLocalStorage/useLocalStorage";
 import { useMinty } from "../useMinty/useMinty";
 
