@@ -8,7 +8,9 @@ import { IPFSResponse } from "../../../../hooks/useIPFS/IPFSResponse";
 import { useLocalStorage } from "../../../../hooks/useLocalStorage/useLocalStorage";
 import { useSubscription } from "../../../../hooks/useSubscription/useSubscription";
 import { IconButton } from "../../../../ui/iconButton/IconButton";
+import { ChevronRightCircleIcon } from "../../../../ui/icons/ChevronRightCircleIcon";
 import { FilesIcon } from "../../../../ui/icons/FilesIcon";
+import { VerticalEllipsisIcon } from "../../../../ui/icons/VerticalEllipsisIcon";
 import styles from "./DropzonePreview.module.scss";
 
 export type DropzoneFileExtended = {
@@ -71,20 +73,54 @@ export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }
 };
 
 export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> = ({ file }) => {
+  const [isActionsMenuVisible, displayActionsMenu] = useState(false);
+
+  const handleDisplayActionsMenu = () => displayActionsMenu(!isActionsMenuVisible);
+
   return (
-    <div className={styles["dropzone-preview-file"]}>
-      <p className={styles["dropzone-preview-file__file-name"]}>{file.name}</p>
+    <div className={styles["dropzone-preview-file"]} onClick={handleDisplayActionsMenu}>
+      <div className={styles["dropzone-preview-file__actions"]}>
+        <VerticalEllipsisIcon />
+      </div>
       <a
         href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
         target="_blank"
         rel="nofollow"
-        className={clsx(styles["dropzone-preview-file__ipfs-path"], {
-          [styles["dropzone-preview__ipfs-path--hide"]]: !file.path,
-        })}
+        className={clsx(styles["dropzone-preview-file__file-name"])}
       >
-        {file.path && "open"}
+        {file.path && file.name && file.name}
       </a>
       <p className={styles["dropzone-preview-file__file-size"]}>{filesize(file.size)} — local</p>
+
+      {isActionsMenuVisible && (
+        <div className={styles["dropzone-preview-file__menu"]}>
+          <div className={styles["dropzone-preview-file__menu--action"]}>
+            <div>
+              <span>ethereum</span>
+              <p>Create an ERC721 contract</p>
+            </div>
+            <div>
+              <ChevronRightCircleIcon />
+            </div>
+          </div>
+          <div className={styles["dropzone-preview-file__menu--action"]}>
+            <div>
+              <span>ethereum</span>
+              <p>Add file to an existing ERC721 contract</p>
+            </div>
+            <div>
+              <ChevronRightCircleIcon />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isActionsMenuVisible && (
+        <div
+          className={styles["dropzone-preview-file__menu--dismiss-overlay"]}
+          onClick={handleDisplayActionsMenu}
+        />
+      )}
     </div>
   );
 };
@@ -133,11 +169,11 @@ export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
           </p>
         </div>
         <div className={styles["dropzone-preview__files"]}>
-          {files.map((file) => (
-            <DropzonePreviewFile key={file.upload.uuid} file={file} />
+          {files.map((file, i) => (
+            <DropzonePreviewFile key={`${file.upload.uuid}-${i}`} file={file} />
           ))}
-          {localFiles.map((file) => (
-            <DropzonePreviewLocalFile key={file.path} file={file} />
+          {localFiles.map((file, i) => (
+            <DropzonePreviewLocalFile key={`${file.path}-${i}`} file={file} />
           ))}
         </div>
       </div>
