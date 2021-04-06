@@ -3,8 +3,8 @@ export type Styles = {
   "dropzone-preview__dismiss-overlay": string;
   "dropzone-preview__files": string;
   "dropzone-preview__info-text-box": string;
+  "dropzone-preview__top": string;
   "dropzone-preview__visible": string;
-  "dropzone-preview__wrapper": string;
   "dropzone-preview-file": string;
   "dropzone-preview-file__file-name": string;
   "dropzone-preview-file__file-size": string;

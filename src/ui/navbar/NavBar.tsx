@@ -1,8 +1,9 @@
+import { ReactChild } from "react";
 import { Col, Container, Row } from "react-grid-system";
 import { BARLogo } from "../icons/BARLogo";
 import styles from "./NavBar.module.scss";
 
-export const NavBar = ({ children }) => {
+export const NavBar: React.FC<{ children?: ReactChild }> = ({ children }) => {
   return (
     <div className={styles.navbar}>
       <Container>
@@ -14,9 +15,11 @@ export const NavBar = ({ children }) => {
               </a>
             </div>
           </Col>
-          <Col lg={2}>
-            <div className={styles.navbar__right}>{children}</div>
-          </Col>
+          {children && (
+            <Col lg={2}>
+              <div className={styles.navbar__right}>{children}</div>
+            </Col>
+          )}
         </Row>
       </Container>
     </div>

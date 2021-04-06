@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 import { IPFSResponse } from "../../../../hooks/useIPFS/IPFSResponse";
 import { useLocalStorage } from "../../../../hooks/useLocalStorage/useLocalStorage";
 import { useSubscription } from "../../../../hooks/useSubscription/useSubscription";
-import { Button } from "../../../../ui/button/Button";
+import { IconButton } from "../../../../ui/iconButton/IconButton";
 import { FilesIcon } from "../../../../ui/icons/FilesIcon";
 import styles from "./DropzonePreview.module.scss";
 
@@ -108,38 +108,37 @@ export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
           onClick={handleDisplayDropzonePreview}
         />
       )}
-      <div className={styles["dropzone-preview__wrapper"]}>
-        <Button
-          size="s"
-          color="dark"
-          rightIcon={<FilesIcon />}
-          onClick={handleDisplayDropzonePreview}
-          variant="outlined"
-        >
-          Your files
-        </Button>
-        <div
-          id="dropzone-preview"
-          className={clsx(styles["dropzone-preview"], {
-            [styles["dropzone-preview__visible"]]: displayDropzonePreview,
-          })}
-        >
-          <div className={styles["dropzone-preview__info-text-box"]}>
-            <p>
-              Your files are stored in the Inter Planetary File System network — IPFS. A reference
-              to your files is stored in your browser local storage. The BAR doesn’t store your
-              files or any data associated to them. Uploading the same file should generate the
-              same IPFS ID, this is how you know it’s original.
-            </p>
-          </div>
-          <div className={styles["dropzone-preview__files"]}>
-            {files.map((file) => (
-              <DropzonePreviewFile key={file.upload.uuid} file={file} />
-            ))}
-            {localFiles.map((file) => (
-              <DropzonePreviewLocalFile key={file.path} file={file} />
-            ))}
-          </div>
+      <div
+        id="dropzone-preview"
+        className={clsx(styles["dropzone-preview"], {
+          [styles["dropzone-preview__visible"]]: displayDropzonePreview,
+        })}
+      >
+        <div className={styles["dropzone-preview__top"]}>
+          <IconButton
+            size="s"
+            color="primary"
+            onClick={handleDisplayDropzonePreview}
+            variant="outlined"
+          >
+            <FilesIcon />
+          </IconButton>
+        </div>
+        <div className={styles["dropzone-preview__info-text-box"]}>
+          <p>
+            Your files are stored in the Inter Planetary File System network — IPFS. A reference
+            to your files is stored in your browser local storage. The BAR doesn’t store your
+            files or any data associated to them. Uploading the same file should generate the same
+            IPFS ID, this is how you know it’s original.
+          </p>
+        </div>
+        <div className={styles["dropzone-preview__files"]}>
+          {files.map((file) => (
+            <DropzonePreviewFile key={file.upload.uuid} file={file} />
+          ))}
+          {localFiles.map((file) => (
+            <DropzonePreviewLocalFile key={file.path} file={file} />
+          ))}
         </div>
       </div>
     </>

@@ -41,16 +41,16 @@ export const Upload = () => {
 
   return (
     <div className={styles["upload"]}>
-      <NavBar>
-        <DropzonePreview files={files} />
-      </NavBar>
+      <NavBar />
+
+      <DropzonePreview files={files} />
 
       <Dropzone onFilesAdded={extendFiles} />
 
       <div className={styles.upload__heading}>
         <Container>
-          <Row justify="between">
-            <Col>
+          <Row>
+            <Col lg={7}>
               <h1>
                 <span>Blockchain — Agnostic</span>
                 <span>Asset Registry</span>

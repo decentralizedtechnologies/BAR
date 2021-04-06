@@ -1,17 +1,22 @@
 @import "../../../../theme/base";
 
 .dropzone-preview {
-  position: absolute;
-  width: 420px;
-  height: 70vh;
-  top: 56px;
+  position: fixed;
+  height: 100vh;
+  width: 77px;
+  top: 0;
   right: 0;
   background-color: $color-dark-1;
-  border-radius: $border-radius;
   padding: $space-m;
   white-space: initial;
   overflow: hidden;
-  display: none;
+  z-index: $z-index-navigation;
+
+  &__top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $space-default;
+  }
 
   &__dismiss-overlay {
     position: fixed;
@@ -21,18 +26,22 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 0;
+    z-index: $z-index-navigation;
     background: rgba($color-black, 0.5);
   }
 
   &__visible {
     display: block;
-  }
+    width: 420px;
 
-  &__wrapper {
-    justify-content: flex-end;
-    position: relative;
-    display: flex;
+    [class*="info-text-box"],
+    [class*="files"] {
+      opacity: 1;
+    }
+
+    [class*="top"] {
+      justify-content: flex-end;
+    }
   }
 
   &__info-text-box {
@@ -42,6 +51,8 @@
     border-radius: $border-radius;
     margin-bottom: $space-default;
 
+    opacity: 0;
+
     p {
       @include font-properties($text-4);
     }
@@ -49,8 +60,10 @@
 
   &__files {
     padding-bottom: $space-xxl;
-    max-height: 420px;
     overflow: scroll;
+    max-height: calc(100vh - 98px - 40px - 16px);
+
+    opacity: 0;
   }
 }
 
@@ -59,7 +72,6 @@
   border-radius: $border-radius;
   margin-bottom: $space-s;
   padding: $space-s;
-  text-align: right;
   border: 1px solid $color-black;
 
   &:hover {
