@@ -1,7 +1,5 @@
 export type Styles = {
-  upload: string;
-  upload__heading: string;
-  "upload__modal--header": string;
+  'close-button': string;
 };
 
 export type ClassNames = keyof Styles;

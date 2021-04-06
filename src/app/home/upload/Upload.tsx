@@ -2,6 +2,8 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Col, Container, Row } from "react-grid-system";
 import { useObservable } from "../../../hooks/useObservable/useObservable";
+import { Button } from "../../../ui/button/Button";
+import { Modal } from "../../../ui/modal/Modal";
 import { NavBar } from "../../../ui/navbar/NavBar";
 import { DropzoneProps } from "./dropzone/Dropzone";
 import { DropzoneFileExtended, DropzonePreviewProps } from "./dropzone/DropzonePreview";
@@ -42,6 +44,22 @@ export const Upload = () => {
   return (
     <div className={styles["upload"]}>
       <NavBar />
+
+      <Modal isOpened withCloseIcon onClose={() => null} aria-labelledby="File Actions Modal">
+        <Modal.Header className={styles["upload__modal--header"]}>
+          <span>ethereum</span>
+          <h2>Create an ERC721 Contract</h2>
+        </Modal.Header>
+        <Modal.Content>Content</Modal.Content>
+        <Modal.Actions>
+          <Button size="s" variant="outlined" color="secondary">
+            Cancel
+          </Button>
+          <Button size="s" color="dark">
+            Create Contract
+          </Button>
+        </Modal.Actions>
+      </Modal>
 
       <DropzonePreview files={files} />
 

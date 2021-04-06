@@ -35,4 +35,15 @@
       padding-top: $space-default;
     }
   }
+
+  &__modal {
+    &--header {
+      > span {
+        @include font-properties($text-3);
+      }
+      > h2 {
+        margin: 0;
+      }
+    }
+  }
 }

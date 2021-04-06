@@ -1,0 +1,150 @@
+@import "/src/theme/_base";
+
+@mixin fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  border-radius: 0;
+  overflow-y: auto;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z-index-modal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: $space-ml;
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $color-dark-50;
+  }
+
+  button.modal__close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    margin-right: 0;
+  }
+
+  button.modal__close-button--float {
+    position: absolute;
+    top: $space-m;
+    background-color: $color-white;
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    max-width: 100%;
+    height: auto;
+    max-height: 90vh;
+    border-radius: $border-radius-medium;
+    background-color: $color-white;
+    box-shadow: $shadow-fluffy;
+
+    &--small {
+      width: 528px;
+    }
+
+    &--medium {
+      width: 640px;
+    }
+
+    &--large {
+      width: 782px;
+    }
+
+    &--fullscreen {
+      @include fullscreen();
+
+      &-on-mobile {
+        @media (max-width: $mq-medium) {
+          @include fullscreen();
+        }
+      }
+    }
+
+    &--pullup {
+      position: absolute;
+      top: $space-xl;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+  }
+
+  &__header {
+    @include font-properties($text-1);
+    border-bottom: $border-divider;
+    padding: $space-m-1;
+    color: $color-dark-1;
+  }
+
+  &__content {
+    max-height: 80vh;
+    margin: 12px $space-l;
+    overflow-y: auto;
+    @include font-properties($text-2);
+    color: $color-dark-1;
+
+    &:last-child {
+      margin-bottom: $space-l;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    padding: $space-ml;
+
+    > *:not(:first-child) {
+      width: 100%;
+      margin: $space-m 0 0;
+    }
+
+    @include atTablet {
+      flex-flow: row;
+      padding: $space-l;
+
+      > *:not(:first-child) {
+        width: auto;
+        margin: 0 0 0 $space-m;
+      }
+    }
+  }
+
+  &--enter {
+    opacity: 0;
+  }
+
+  &--enter-active {
+    opacity: 1;
+    transition: opacity $ease-in-out $duration-default;
+  }
+
+  &--exit {
+    opacity: 1;
+  }
+
+  &--exit-active {
+    opacity: 0;
+    transition: opacity $ease-in-out $duration-default;
+  }
+}
