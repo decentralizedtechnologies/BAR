@@ -61,7 +61,7 @@
   &__files {
     padding-bottom: $space-xxl;
     overflow: scroll;
-    max-height: calc(100vh - 98px - 40px - 16px);
+    height: calc(100vh - 98px - 40px - 16px);
 
     opacity: 0;
   }
