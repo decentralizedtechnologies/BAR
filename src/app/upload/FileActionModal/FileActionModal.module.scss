@@ -1,0 +1,17 @@
+@import "../../../theme/base";
+
+.file-action-modal {
+  &__header {
+    > span {
+      @include font-properties($text-3);
+      color: $color-dark-4;
+    }
+    > h2 {
+      margin: 0;
+    }
+  }
+
+  &__file-link {
+    @include font-properties($text-2);
+  }
+}

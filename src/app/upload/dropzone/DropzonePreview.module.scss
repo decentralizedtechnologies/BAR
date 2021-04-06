@@ -176,6 +176,10 @@
         color: $color-dark-3;
         width: rem($font-size-base);
       }
+
+      &-link {
+        text-decoration: none;
+      }
     }
 
     &--dismiss-overlay {

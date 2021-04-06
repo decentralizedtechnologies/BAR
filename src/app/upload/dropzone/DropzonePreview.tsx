@@ -7,6 +7,7 @@ import { Observable } from "rxjs";
 import { IPFSResponse } from "../../../hooks/useIPFS/IPFSResponse";
 import { useLocalStorage } from "../../../hooks/useLocalStorage/useLocalStorage";
 import { useSubscription } from "../../../hooks/useSubscription/useSubscription";
+import { FileActionType } from "../../../types/FileActionType";
 import { IconButton } from "../../../ui/iconButton/IconButton";
 import { ChevronRightCircleIcon } from "../../../ui/icons/ChevronRightCircleIcon";
 import { FilesIcon } from "../../../ui/icons/FilesIcon";
@@ -30,10 +31,12 @@ export type DropzonePreviewFileProps = {
 
 export type DropzonePreviewLocalFileProps = {
   file: IPFSFile;
+  onClickFileAction: (type: FileActionType, file: IPFSFile) => void;
 };
 
 export type DropzonePreviewProps = {
   files: DropzoneFileExtended[];
+  onClickFileAction: (type: FileActionType, file: IPFSFile) => void;
 };
 
 export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }) => {
@@ -72,7 +75,10 @@ export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }
   );
 };
 
-export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> = ({ file }) => {
+export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> = ({
+  file,
+  onClickFileAction,
+}) => {
   const [isActionsMenuVisible, displayActionsMenu] = useState(false);
 
   const handleDisplayActionsMenu = () => displayActionsMenu(!isActionsMenuVisible);
@@ -94,7 +100,25 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
 
       {isActionsMenuVisible && (
         <div className={styles["dropzone-preview-file__menu"]}>
-          <div className={styles["dropzone-preview-file__menu--action"]}>
+          <a
+            className={clsx(
+              styles["dropzone-preview-file__menu--action"],
+              styles["dropzone-preview-file__menu--action-link"]
+            )}
+            href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+            target="_blank"
+          >
+            <div>
+              <p>Open file</p>
+            </div>
+            <div>
+              <ChevronRightCircleIcon />
+            </div>
+          </a>
+          <div
+            className={styles["dropzone-preview-file__menu--action"]}
+            onClick={() => onClickFileAction(FileActionType.ethereum_create_erc721, file)}
+          >
             <div>
               <span>ethereum</span>
               <p>Create an ERC721 contract</p>
@@ -103,7 +127,10 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
               <ChevronRightCircleIcon />
             </div>
           </div>
-          <div className={styles["dropzone-preview-file__menu--action"]}>
+          <div
+            className={styles["dropzone-preview-file__menu--action"]}
+            onClick={() => onClickFileAction(FileActionType.ethereum_erc721_add_file, file)}
+          >
             <div>
               <span>ethereum</span>
               <p>Add file to an existing ERC721 contract</p>
@@ -125,7 +152,7 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
   );
 };
 
-export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
+export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files, onClickFileAction }) => {
   const ls = useLocalStorage();
   const [displayDropzonePreview, setDisplayDropzonePreview] = useState(false);
   const localFiles = ls.get<IPFSFile[]>("files", "[]");
@@ -173,7 +200,11 @@ export const DropzonePreview: React.FC<DropzonePreviewProps> = ({ files }) => {
             <DropzonePreviewFile key={`${file.upload.uuid}-${i}`} file={file} />
           ))}
           {localFiles.map((file, i) => (
-            <DropzonePreviewLocalFile key={`${file.path}-${i}`} file={file} />
+            <DropzonePreviewLocalFile
+              key={`${file.path}-${i}`}
+              file={file}
+              onClickFileAction={onClickFileAction}
+            />
           ))}
         </div>
       </div>

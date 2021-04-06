@@ -2,11 +2,11 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Col, Container, Row } from "react-grid-system";
 import { useObservable } from "../../hooks/useObservable/useObservable";
-import { Button } from "../../ui/button/Button";
-import { Modal } from "../../ui/modal/Modal";
+import { FileActionType } from "../../types/FileActionType";
 import { NavBar } from "../../ui/navbar/NavBar";
 import { DropzoneProps } from "./dropzone/Dropzone";
-import { DropzoneFileExtended, DropzonePreviewProps } from "./dropzone/DropzonePreview";
+import { DropzoneFileExtended, DropzonePreviewProps, IPFSFile } from "./dropzone/DropzonePreview";
+import { FileActionModal } from "./FileActionModal/FileActionModal";
 import styles from "./Upload.module.scss";
 
 const Dropzone = dynamic<DropzoneProps>(
@@ -25,7 +25,8 @@ const DropzonePreview = dynamic<DropzonePreviewProps>(
 
 export const Upload = () => {
   const [files, setFiles] = useState<DropzoneFileExtended[]>([]);
-  const [fileActionType, setFileActionType] = useState();
+  const [fileActionType, setFileActionType] = useState<FileActionType | undefined>(undefined);
+  const [currentFile, setCurrentFile] = useState<IPFSFile>(undefined);
   const observable = useObservable();
 
   const extendFiles = (files: Array<DropzoneFileExtended>) => {
@@ -42,27 +43,22 @@ export const Upload = () => {
     return files;
   };
 
+  const handleOnClickFileAction = (type: FileActionType, file: IPFSFile) => {
+    setFileActionType(type);
+    setCurrentFile(file);
+  };
+
   return (
     <div className={styles["upload"]}>
       <NavBar />
 
-      <Modal isOpened withCloseIcon onClose={() => null} aria-labelledby="File Actions Modal">
-        <Modal.Header className={styles["upload__modal--header"]}>
-          <span>ethereum</span>
-          <h2>Create an ERC721 Contract</h2>
-        </Modal.Header>
-        <Modal.Content>Content</Modal.Content>
-        <Modal.Actions>
-          <Button size="s" variant="outlined" color="secondary">
-            Cancel
-          </Button>
-          <Button size="s" color="dark">
-            Create Contract
-          </Button>
-        </Modal.Actions>
-      </Modal>
+      <FileActionModal
+        onClose={() => setFileActionType(undefined)}
+        file={currentFile}
+        fileActionType={fileActionType}
+      />
 
-      <DropzonePreview files={files} />
+      <DropzonePreview files={files} onClickFileAction={handleOnClickFileAction} />
 
       <Dropzone onFilesAdded={extendFiles} />
 

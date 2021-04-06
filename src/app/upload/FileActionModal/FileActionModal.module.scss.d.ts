@@ -1,6 +1,6 @@
 export type Styles = {
-  upload: string;
-  upload__heading: string;
+  "file-action-modal__file-link": string;
+  "file-action-modal__header": string;
 };
 
 export type ClassNames = keyof Styles;

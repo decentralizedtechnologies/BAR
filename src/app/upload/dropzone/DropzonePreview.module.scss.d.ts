@@ -13,6 +13,7 @@ export type Styles = {
   "dropzone-preview-file__ipfs-path--hide": string;
   "dropzone-preview-file__menu": string;
   "dropzone-preview-file__menu--action": string;
+  "dropzone-preview-file__menu--action-link": string;
   "dropzone-preview-file__menu--dismiss-overlay": string;
   "dropzone-preview-file__progress-rail": string;
   "dropzone-preview-file__progress-rail--hide": string;
