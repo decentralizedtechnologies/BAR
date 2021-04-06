@@ -47,7 +47,19 @@ export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }
 
   return (
     <div className={styles["dropzone-preview-file"]}>
-      <p className={styles["dropzone-preview-file__file-name"]}>{name}</p>
+      {ipfsResult.path ? (
+        <a
+          href={`https://ipfs.infura.io/ipfs/${ipfsResult.path && ipfsResult.path}`}
+          target="_blank"
+          rel="nofollow"
+          className={clsx(styles["dropzone-preview-file__file-name"])}
+        >
+          {ipfsResult.path && name}
+        </a>
+      ) : (
+        <p className={styles["dropzone-preview-file__file-name"]}>{name}</p>
+      )}
+
       <div
         className={clsx(styles["dropzone-preview-file__progress-rail"], {
           [styles["dropzone-preview-file__progress-rail--hide"]]: ipfsResult.path,
@@ -58,16 +70,7 @@ export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }
           style={{ width: `${progress}%` }}
         />
       </div>
-      <a
-        href={`https://ipfs.infura.io/ipfs/${ipfsResult.path && ipfsResult.path}`}
-        target="_blank"
-        rel="nofollow"
-        className={clsx(styles["dropzone-preview-file__ipfs-path"], {
-          [styles["dropzone-preview__ipfs-path--hide"]]: !ipfsResult.path,
-        })}
-      >
-        {ipfsResult.path && "open"}
-      </a>
+
       <p className={styles["dropzone-preview-file__file-size"]}>
         {`${progress.toFixed(0)}%`} of {filesize(file.upload.total)}
       </p>
