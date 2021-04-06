@@ -3,7 +3,7 @@
 .dropzone-preview {
   position: fixed;
   height: 100vh;
-  width: 77px;
+  width: $dropzone-file-preview-sidebar-width-shrink;
   top: 0;
   right: 0;
   background-color: $color-dark-1;
@@ -32,7 +32,7 @@
 
   &__visible {
     display: block;
-    width: 420px;
+    width: $dropzone-file-preview-sidebar-width-open;
 
     [class*="info-text-box"],
     [class*="files"] {

@@ -4,6 +4,7 @@
   position: relative;
   background: $color-primary;
   min-height: 100vh;
+  padding-right: $dropzone-file-preview-sidebar-width-shrink;
 
   &__heading {
     position: absolute;
@@ -20,7 +21,6 @@
         &:nth-child(1) {
           @include font-properties($text-heading-level-2);
           font-weight: $font-weight-medium;
-          // font-size: rem($font-size-base * 2) !important;
         }
         &:nth-child(2) {
           @include font-properties($text-heading-level-1);

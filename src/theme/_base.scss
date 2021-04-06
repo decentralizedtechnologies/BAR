@@ -18,6 +18,9 @@ $color-black: #000000;
 
 $max-container-width: 1720px;
 
+$dropzone-file-preview-sidebar-width-shrink: 77px;
+$dropzone-file-preview-sidebar-width-open: 420px;
+
 // min-width 360px
 @mixin atMobile {
   @media (min-width: $mq-small) {
