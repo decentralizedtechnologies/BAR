@@ -95,6 +95,54 @@ export const FileActionModal: React.FC<{
         </>
       )}
 
+      {fileActionType === FileActionType.filecoin_pin && (
+        <>
+          <Modal.Header className={styles["file-action-modal__header"]}>
+            <span>filecoin</span>
+            <h2>Pin file to the Filecoin chain</h2>
+            <a
+              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              target="_blank"
+              rel="nofollow"
+              className={styles["file-action-modal__file-link"]}
+            >
+              {file.path && file.name && file.name}
+            </a>
+          </Modal.Header>
+          <Modal.Content></Modal.Content>
+          <Modal.Actions>
+            <Button size="s" variant="outlined" color="secondary" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button size="s" color="dark">
+              Pin to Filecoin
+            </Button>
+          </Modal.Actions>
+        </>
+      )}
+
+      {fileActionType === FileActionType.share_file && (
+        <>
+          <Modal.Header className={styles["file-action-modal__header"]}>
+            <h2>Share file</h2>
+            <a
+              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              target="_blank"
+              rel="nofollow"
+              className={styles["file-action-modal__file-link"]}
+            >
+              {file.path && file.name && file.name}
+            </a>
+          </Modal.Header>
+          <Modal.Content></Modal.Content>
+          <Modal.Actions>
+            <Button size="s" variant="outlined" color="secondary" onClick={onClose}>
+              Cancel
+            </Button>
+          </Modal.Actions>
+        </>
+      )}
+
       {fileActionType === FileActionType.arweave_pin_to_permaweb && (
         <>
           <Modal.Header className={styles["file-action-modal__header"]}>

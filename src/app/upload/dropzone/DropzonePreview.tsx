@@ -120,6 +120,17 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
           </a>
           <div
             className={styles["dropzone-preview-file__menu--action"]}
+            onClick={() => onClickFileAction(FileActionType.share_file, file)}
+          >
+            <div>
+              <p>Share file</p>
+            </div>
+            <div>
+              <ChevronRightCircleIcon />
+            </div>
+          </div>
+          <div
+            className={styles["dropzone-preview-file__menu--action"]}
             onClick={() => onClickFileAction(FileActionType.ethereum_create_erc721, file)}
           >
             <div>
@@ -149,6 +160,18 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
             <div>
               <span>arweave</span>
               <p>Pin file to the Arweave permaweb</p>
+            </div>
+            <div>
+              <ChevronRightCircleIcon />
+            </div>
+          </div>
+          <div
+            className={styles["dropzone-preview-file__menu--action"]}
+            onClick={() => onClickFileAction(FileActionType.filecoin_pin, file)}
+          >
+            <div>
+              <span>filecoin</span>
+              <p>Pin file to the Filecoin chain</p>
             </div>
             <div>
               <ChevronRightCircleIcon />
