@@ -1,0 +1,68 @@
+@import "../../../theme/base";
+
+.dropzone-preview {
+  position: fixed;
+  height: 100vh;
+  width: $dropzone-file-preview-sidebar-width-shrink;
+  top: 0;
+  right: 0;
+  background-color: $color-dark-1;
+  padding: $space-m;
+  white-space: initial;
+  overflow: hidden;
+  z-index: $z-index-navigation;
+
+  &__top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $space-default;
+  }
+
+  &__dismiss-overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: $z-index-navigation;
+    background: rgba($color-black, 0.5);
+  }
+
+  &__visible {
+    display: block;
+    width: $dropzone-file-preview-sidebar-width-open;
+
+    [class*="info-text-box"],
+    [class*="files"] {
+      opacity: 1;
+    }
+
+    [class*="top"] {
+      justify-content: flex-end;
+    }
+  }
+
+  &__info-text-box {
+    padding: $space-s;
+    color: $color-white;
+    background-color: $color-black;
+    border-radius: $border-radius;
+    margin-bottom: $space-default;
+
+    opacity: 0;
+
+    p {
+      @include font-properties($text-4);
+    }
+  }
+
+  &__files {
+    padding-bottom: $space-xxl;
+    overflow: scroll;
+    height: calc(100vh - 98px - 40px - 16px);
+
+    opacity: 0;
+  }
+}

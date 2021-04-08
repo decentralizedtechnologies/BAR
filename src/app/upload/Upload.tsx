@@ -2,22 +2,24 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Col, Container, Row } from "react-grid-system";
 import { useObservable } from "../../hooks/useObservable/useObservable";
+import { DropzoneFileExtended } from "../../types/DropzoneFileExtended";
 import { FileActionType } from "../../types/FileActionType";
+import { IPFSFile } from "../../types/IPFSFile";
 import { NavBar } from "../../ui/navbar/NavBar";
-import { DropzoneProps } from "./dropzone/Dropzone";
-import { DropzoneFileExtended, DropzonePreviewProps, IPFSFile } from "./dropzone/DropzonePreview";
+import { DropzoneProps } from "./Dropzone/Dropzone.types";
+import { DropzonePreviewProps } from "./DropzonePreview/DropzonePreview.types";
 import { FileActionModal } from "./FileActionModal/FileActionModal";
 import styles from "./Upload.module.scss";
 
 const Dropzone = dynamic<DropzoneProps>(
-  () => import("./dropzone/Dropzone").then((mod) => mod.Dropzone),
+  () => import("./Dropzone/Dropzone").then((mod) => mod.Dropzone),
   {
     ssr: false,
   }
 );
 
 const DropzonePreview = dynamic<DropzonePreviewProps>(
-  () => import("./dropzone/DropzonePreview").then((mod) => mod.DropzonePreview),
+  () => import("./DropzonePreview/DropzonePreview").then((mod) => mod.DropzonePreview),
   {
     ssr: false,
   }

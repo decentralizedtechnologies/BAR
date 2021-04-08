@@ -4,11 +4,7 @@ import { useEffect, useRef } from "react";
 import { useIPFS } from "../../../hooks/useIPFS/useIPFS";
 import { UploadIcon } from "../../../ui/icons/UploadIcon";
 import styles from "./Dropzone.module.scss";
-import { DropzoneFileExtended } from "./DropzonePreview";
-
-export type DropzoneProps = {
-  onFilesAdded: (files: DropzoneJS.DropzoneFile[]) => DropzoneFileExtended[];
-};
+import { DropzoneProps } from "./Dropzone.types";
 
 DropzoneJS.autoDiscover = false;
 

@@ -1,0 +1,132 @@
+@import "../../../theme/base";
+
+.dropzone-preview-file {
+  background-color: $color-black;
+  border-radius: $border-radius;
+  margin-bottom: $space-s;
+  padding: $space-s;
+  border: 1px solid $color-black;
+  position: relative;
+
+  &__actions {
+    position: absolute;
+    top: $space-s;
+    right: $space-s;
+
+    svg {
+      width: 6px;
+      height: auto;
+      color: $color-brand;
+    }
+  }
+
+  &:hover {
+    border: 1px solid $color-brand;
+    cursor: pointer;
+  }
+
+  &__file-name {
+    @include font-properties($text-3);
+    color: $color-white;
+    margin: 0;
+
+    &:hover {
+      color: $color-brand;
+      text-decoration: underline;
+    }
+  }
+
+  &__progress-rail {
+    height: 3px;
+    border-radius: $border-radius-pill;
+    background-color: $color-white;
+    width: 100%;
+    margin-bottom: $space-s;
+    margin-top: $space-s;
+
+    &--hide {
+      display: none;
+    }
+  }
+
+  &__progress-track {
+    height: 3px;
+    border-radius: $border-radius-pill;
+    background-color: $color-brand;
+  }
+
+  &__file-size {
+    @include font-properties($text-4);
+    color: $color-dark-3;
+    margin: 0;
+  }
+
+  &__ipfs-path {
+    @include font-properties($text-4);
+    color: $color-brand;
+
+    &--hide {
+      display: none;
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    background-color: $color-white;
+    border-radius: $border-radius;
+    width: 100%;
+    left: 0;
+    top: 63px;
+    z-index: $z-index-form-dropdown;
+
+    &--action {
+      display: flex;
+      justify-content: space-between;
+      padding: $space-s;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $color-dark-10;
+      }
+
+      > div {
+        height: 56px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      span {
+        @include font-properties($text-4);
+        color: $color-dark-3;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      svg {
+        color: $color-dark-3;
+        width: rem($font-size-base);
+      }
+
+      &-link {
+        text-decoration: none;
+      }
+    }
+
+    &--dismiss-overlay {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: $z-index-modal;
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+}

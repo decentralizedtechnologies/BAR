@@ -1,7 +1,7 @@
 import { FileActionType } from "../../../types/FileActionType";
+import { IPFSFile } from "../../../types/IPFSFile";
 import { Button } from "../../../ui/button/Button";
 import { Modal } from "../../../ui/modal/Modal";
-import { IPFSFile } from "../dropzone/DropzonePreview";
 import styles from "./FileActionModal.module.scss";
 
 export const FileActionModal: React.FC<{
