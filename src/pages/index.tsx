@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import { Upload } from "../app/upload/Upload";
+import { Upload } from "../app/Upload/Upload";
 
 const Home: NextPage = () => (
   <>
