@@ -1,7 +1,8 @@
+import { NextPage } from "next";
 import Head from "next/head";
 import { Upload } from "../app/upload/Upload";
 
-export const Home = () => (
+const Home: NextPage = () => (
   <>
     <Head>
       <title>BAR | Blockchain Asset Registry</title>

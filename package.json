@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "scss:class-types": "tsm 'src/**/**/*.scss' --ignore 'src/theme/*.scss' --exportType default --nameFormat none --implementation node-sass src --logLevel silent",
-    "scss:class-types:watch": "npm run scss:class-types -- --watch"
+    "scss:class-types:watch": "npm run scss:class-types -- --watch",
+    "plop": "plop"
   },
   "dependencies": {
     "clsx": "^1.1.1",
@@ -33,7 +34,9 @@
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "ethereum-waffle": "^3.3.0",
+    "inquirer-directory": "^2.2.0",
     "node-sass": "^5.0.0",
+    "plop": "^2.7.4",
     "typed-scss-modules": "^4.1.1",
     "typescript": "^4.2.3"
   }
