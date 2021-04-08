@@ -31,12 +31,21 @@ export const FileActionModal: React.FC<{
             </a>
           </Modal.Header>
           <Modal.Content>
+            <h3>Pre-requisites</h3>
+            <p>
+              An Ethereum wallet browser extension, such as{" "}
+              <a href="https://metamask.io/" target="_blank">
+                Metamask
+              </a>
+              .
+            </p>
+            <p>A minimum ETH balance to cover the transaction cost.</p>
+
             <h3>What will happen?</h3>
             <p>
               This action will deploy a new ERC721 Solidity contract to the Ethereum network
               that’s set on your wallet.
             </p>
-
             <p>
               Your wallet is going to ask you to sign a “create contract” transaction. This is the
               contract you are creating.
@@ -48,15 +57,6 @@ export const FileActionModal: React.FC<{
             <p>
               You'll get back an Ethereum contract address: <code>0x123abc...</code>
             </p>
-            <h3>Pre-requisites</h3>
-            <p>
-              An Ethereum wallet browser extension, such as{" "}
-              <a href="https://metamask.io/" target="_blank">
-                Metamask
-              </a>
-              .
-            </p>
-            <p>A minimum ETH balance to cover the transaction cost.</p>
           </Modal.Content>
           <Modal.Actions>
             <Button size="s" variant="outlined" color="secondary" onClick={onClose}>
@@ -74,6 +74,14 @@ export const FileActionModal: React.FC<{
           <Modal.Header className={styles["file-action-modal__header"]}>
             <span>ethereum</span>
             <h2>Add file to an existing ERC721 contract</h2>
+            <a
+              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              target="_blank"
+              rel="nofollow"
+              className={styles["file-action-modal__file-link"]}
+            >
+              {file.path && file.name && file.name}
+            </a>
           </Modal.Header>
           <Modal.Content>Content</Modal.Content>
           <Modal.Actions>
@@ -82,6 +90,71 @@ export const FileActionModal: React.FC<{
             </Button>
             <Button size="s" color="dark">
               Create Contract
+            </Button>
+          </Modal.Actions>
+        </>
+      )}
+
+      {fileActionType === FileActionType.arweave_pin_to_permaweb && (
+        <>
+          <Modal.Header className={styles["file-action-modal__header"]}>
+            <span>arweave</span>
+            <h2>Pin file to the Arweave permaweb</h2>
+            <a
+              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              target="_blank"
+              rel="nofollow"
+              className={styles["file-action-modal__file-link"]}
+            >
+              {file.path && file.name && file.name}
+            </a>
+          </Modal.Header>
+          <Modal.Content>
+            <h3>Pre-requisites</h3>
+            <p>
+              An Arweave JSON keyfile which you can get here:{" "}
+              <a href="https://faucet.arweave.net/" target="_blank" rel="nofollow">
+                https://faucet.arweave.net/
+              </a>
+            </p>
+            <p>
+              <a
+                href="https://docs.arweave.org/info/wallets/arweave-web-extension-wallet"
+                target="_blank"
+                rel="nofollow"
+              >
+                An Arweave wallet browser extension.
+              </a>
+            </p>
+            <p>
+              AR token balance. You can buy AR tokens{" "}
+              <a
+                href="https://coinmarketcap.com/currencies/arweave/markets/"
+                target="_blank"
+                rel="nofollow"
+              >
+                at these markets.
+              </a>
+            </p>
+
+            <h3>What will happen?</h3>
+            <p>
+              If your AR balance is enough to cover the transaction cost, you'll load your keyfile
+              into the dropzone and confirm the transaction in your Arweave wallet browser
+              extension.
+            </p>
+            <p>
+              Once the transaction is complete, you'll get an Arweave URL that points to your
+              file. This file will now be stored forever and no one but the wallet holder can
+              remove it.
+            </p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button size="s" variant="outlined" color="secondary" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button size="s" color="dark">
+              Set Arweave keyfile
             </Button>
           </Modal.Actions>
         </>

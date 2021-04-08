@@ -142,6 +142,18 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
               <ChevronRightCircleIcon />
             </div>
           </div>
+          <div
+            className={styles["dropzone-preview-file__menu--action"]}
+            onClick={() => onClickFileAction(FileActionType.arweave_pin_to_permaweb, file)}
+          >
+            <div>
+              <span>arweave</span>
+              <p>Pin file to the Arweave permaweb</p>
+            </div>
+            <div>
+              <ChevronRightCircleIcon />
+            </div>
+          </div>
         </div>
       )}
 
