@@ -10,19 +10,14 @@ export const FileActionModal: React.FC<{
   file: IPFSFile;
 }> = ({ fileActionType, onClose, file }) => {
   return (
-    <Modal
-      isOpened={fileActionType !== undefined}
-      withCloseIcon
-      onClose={onClose}
-      aria-labelledby="File Actions Modal"
-    >
+    <Modal isOpened={fileActionType !== undefined} withCloseIcon onClose={onClose} aria-labelledby="File Actions Modal">
       {fileActionType === FileActionType.ethereum_create_erc721 && (
         <>
           <Modal.Header className={styles["file-action-modal__header"]}>
             <span>ethereum</span>
             <h2>Create an ERC721 contract</h2>
             <a
-              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -43,16 +38,15 @@ export const FileActionModal: React.FC<{
 
             <h3>What will happen?</h3>
             <p>
-              This action will deploy a new ERC721 Solidity contract to the Ethereum network
-              that’s set on your wallet.
+              This action will deploy a new ERC721 Solidity contract to the Ethereum network that’s set on your wallet.
             </p>
             <p>
-              Your wallet is going to ask you to sign a “create contract” transaction. This is the
-              contract you are creating.
+              Your wallet is going to ask you to sign a “create contract” transaction. This is the contract you are
+              creating.
             </p>
             <p>
-              Once the transaction is complete, you can add “files” to the contract stored as a
-              URL referencing to your file’s JSON metadata.
+              Once the transaction is complete, you can add “files” to the contract stored as a URL referencing to your
+              file’s JSON metadata.
             </p>
             <p>
               You'll get back an Ethereum contract address: <code>0x123abc...</code>
@@ -75,7 +69,7 @@ export const FileActionModal: React.FC<{
             <span>ethereum</span>
             <h2>Add file to an existing ERC721 contract</h2>
             <a
-              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -101,7 +95,7 @@ export const FileActionModal: React.FC<{
             <span>filecoin</span>
             <h2>Pin file to the Filecoin chain</h2>
             <a
-              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -126,7 +120,7 @@ export const FileActionModal: React.FC<{
           <Modal.Header className={styles["file-action-modal__header"]}>
             <h2>Share file</h2>
             <a
-              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -149,7 +143,7 @@ export const FileActionModal: React.FC<{
             <span>arweave</span>
             <h2>Pin file to the Arweave permaweb</h2>
             <a
-              href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -176,25 +170,19 @@ export const FileActionModal: React.FC<{
             </p>
             <p>
               AR token balance. You can buy AR tokens{" "}
-              <a
-                href="https://coinmarketcap.com/currencies/arweave/markets/"
-                target="_blank"
-                rel="nofollow"
-              >
+              <a href="https://coinmarketcap.com/currencies/arweave/markets/" target="_blank" rel="nofollow">
                 at these markets.
               </a>
             </p>
 
             <h3>What will happen?</h3>
             <p>
-              If your AR balance is enough to cover the transaction cost, you'll load your keyfile
-              into the dropzone and confirm the transaction in your Arweave wallet browser
-              extension.
+              If your AR balance is enough to cover the transaction cost, you'll load your keyfile into the dropzone and
+              confirm the transaction in your Arweave wallet browser extension.
             </p>
             <p>
-              Once the transaction is complete, you'll get an Arweave URL that points to your
-              file. This file will now be stored forever and no one but the wallet holder can
-              remove it.
+              Once the transaction is complete, you'll get an Arweave URL that points to your file. This file will now
+              be stored forever and no one but the wallet holder can remove it.
             </p>
           </Modal.Content>
           <Modal.Actions>
