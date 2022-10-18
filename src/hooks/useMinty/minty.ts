@@ -73,7 +73,14 @@ export class Minty {
     }
 
     // create a local IPFS node
-    this.ipfs = ipfsClient({ host: "ipfs.infura.io", port: 5001, protocol: "https" });
+    this.ipfs = ipfsClient({
+      host: "ipfs.infura.io",
+      port: 5001,
+      protocol: "https",
+      headers: {
+        authorization: "Basic MkdKdkNIcnMxUlltUEV4bUI2ZDJZd0tGQ0FNOmMzZjA4ZGY5YjYwZDFkZjRjMzYzZjNiNTM5MDAyOTcw",
+      },
+    });
 
     this._initialized = true;
 
@@ -90,10 +97,7 @@ export class Minty {
     // 'ipfs://QmaNZ2FCgvBPqnxtkbToVVbK2Nes6xk5K4Ns6BsmkPucAM'
     const ipfsPath = "/nft/" + basename;
 
-    const result = await this.ipfs.add(
-      { path: ipfsPath, content },
-      { ...ipfsAddOptions, ...ipfsOptions }
-    );
+    const result = await this.ipfs.add({ path: ipfsPath, content }, { ...ipfsAddOptions, ...ipfsOptions });
 
     return {
       ...result,
@@ -140,7 +144,7 @@ export class Minty {
     // add the metadata to IPFS
     const { cid: metadataCid } = await this.ipfs.add(
       { path: "/nft/metadata.json", content: JSON.stringify(metadata) },
-      ipfsAddOptions
+      ipfsAddOptions,
     );
 
     const metadataURI = ensureIpfsUriPrefix(metadataCid) + "/metadata.json";
@@ -172,7 +176,7 @@ export class Minty {
     // add the metadata to IPFS
     const { cid: metadataCid } = await this.ipfs.add(
       { path: "/nft/metadata.json", content: JSON.stringify(metadata) },
-      ipfsAddOptions
+      ipfsAddOptions,
     );
 
     const metadataURI = ensureIpfsUriPrefix(metadataCid) + "/metadata.json";
@@ -555,7 +559,7 @@ export class Minty {
       throw new Error(
         `No key configured for pinning service ${name}.` +
           `If the config references an environment variable, e.g. '$$PINATA_API_TOKEN', ` +
-          `make sure that the variable is defined.`
+          `make sure that the variable is defined.`,
       );
     }
     await this.ipfs.pin.remote.service.add(name, { endpoint, key });

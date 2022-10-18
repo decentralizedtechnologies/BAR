@@ -7,10 +7,7 @@ import { VerticalEllipsisIcon } from "../../../ui/icons/VerticalEllipsisIcon";
 import styles from "./DropzonePreviewLocalFile.module.scss";
 import { DropzonePreviewLocalFileProps } from "./DropzonePreviewLocalFile.types";
 
-export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> = ({
-  file,
-  onClickFileAction,
-}) => {
+export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> = ({ file, onClickFileAction }) => {
   const [isActionsMenuVisible, displayActionsMenu] = useState(false);
 
   const handleDisplayActionsMenu = () => displayActionsMenu(!isActionsMenuVisible);
@@ -21,7 +18,7 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
         <VerticalEllipsisIcon />
       </div>
       <a
-        href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+        href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
         target="_blank"
         rel="nofollow"
         className={clsx(styles["dropzone-preview-file__file-name"])}
@@ -35,9 +32,9 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
           <a
             className={clsx(
               styles["dropzone-preview-file__menu--action"],
-              styles["dropzone-preview-file__menu--action-link"]
+              styles["dropzone-preview-file__menu--action-link"],
             )}
-            href={`https://ipfs.infura.io/ipfs/${file.path && file.path}`}
+            href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
             target="_blank"
           >
             <div>
@@ -110,10 +107,7 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
       )}
 
       {isActionsMenuVisible && (
-        <div
-          className={styles["dropzone-preview-file__menu--dismiss-overlay"]}
-          onClick={handleDisplayActionsMenu}
-        />
+        <div className={styles["dropzone-preview-file__menu--dismiss-overlay"]} onClick={handleDisplayActionsMenu} />
       )}
     </div>
   );
