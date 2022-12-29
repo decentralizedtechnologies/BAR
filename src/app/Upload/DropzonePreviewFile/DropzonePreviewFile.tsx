@@ -14,7 +14,7 @@ export const DropzonePreviewFile: React.FC<DropzonePreviewFileProps> = ({ file }
     <div className={styles["dropzone-preview-file"]}>
       {ipfsResult.path ? (
         <a
-          href={`https://infura-ipfs.io/ipfs/${ipfsResult.path && ipfsResult.path}`}
+          href={`https://blockchainassetregistry.io/ipfs/${ipfsResult.path && ipfsResult.path}`}
           target="_blank"
           rel="nofollow"
           className={clsx(styles["dropzone-preview-file__file-name"])}
