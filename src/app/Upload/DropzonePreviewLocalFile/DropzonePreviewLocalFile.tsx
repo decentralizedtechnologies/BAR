@@ -18,7 +18,7 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
         <VerticalEllipsisIcon />
       </div>
       <a
-        href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
+        href={`https://blockchainassetregistry.infura-ipfs.io/ipfs/${file.path && file.path}`}
         target="_blank"
         rel="nofollow"
         className={clsx(styles["dropzone-preview-file__file-name"])}
@@ -34,7 +34,7 @@ export const DropzonePreviewLocalFile: React.FC<DropzonePreviewLocalFileProps> =
               styles["dropzone-preview-file__menu--action"],
               styles["dropzone-preview-file__menu--action-link"],
             )}
-            href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
+            href={`https://blockchainassetregistry.infura-ipfs.io/ipfs/${file.path && file.path}`}
             target="_blank"
           >
             <div>

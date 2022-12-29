@@ -17,7 +17,7 @@ export const FileActionModal: React.FC<{
             <span>ethereum</span>
             <h2>Create an ERC721 contract</h2>
             <a
-              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
+              href={`https://blockchainassetregistry.infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -69,7 +69,7 @@ export const FileActionModal: React.FC<{
             <span>ethereum</span>
             <h2>Add file to an existing ERC721 contract</h2>
             <a
-              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
+              href={`https://blockchainassetregistry.infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -95,7 +95,7 @@ export const FileActionModal: React.FC<{
             <span>filecoin</span>
             <h2>Pin file to the Filecoin chain</h2>
             <a
-              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
+              href={`https://blockchainassetregistry.infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -120,7 +120,7 @@ export const FileActionModal: React.FC<{
           <Modal.Header className={styles["file-action-modal__header"]}>
             <h2>Share file</h2>
             <a
-              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
+              href={`https://blockchainassetregistry.infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
@@ -143,7 +143,7 @@ export const FileActionModal: React.FC<{
             <span>arweave</span>
             <h2>Pin file to the Arweave permaweb</h2>
             <a
-              href={`https://infura-ipfs.io/ipfs/${file.path && file.path}`}
+              href={`https://blockchainassetregistry.infura-ipfs.io/ipfs/${file.path && file.path}`}
               target="_blank"
               rel="nofollow"
               className={styles["file-action-modal__file-link"]}
